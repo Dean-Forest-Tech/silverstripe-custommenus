@@ -9,7 +9,7 @@ class CustomMenuAdmin extends LeftAndMain {
 	
 	public function init() {
 		parent::init();
-		Requirements::css('sitemenus/css/CustomMenu.css');
+		Requirements::css('custommenus/css/CustomMenu.css');
 	}
 
 	/**
@@ -42,6 +42,7 @@ class CustomMenuAdmin extends LeftAndMain {
 			);
 	
 			$actions = new FieldSet(
+				new FormAction('doDeleteMenu', _t('CustomMenuAdmin.DELETEMENU','Delete Menu')),
 				new FormAction('doUpdateMenu', _t('CustomMenuAdmin.UPDATEMENU','Update Menu'))
 			);
 
@@ -54,8 +55,22 @@ class CustomMenuAdmin extends LeftAndMain {
 			return $form;
 		}
 	}
- 
+	
+	function leftMenuForm() {
+		// Create form fields
+		$fields = new FieldSet(
+			new HiddenField('ID','id#','new')
+		);
+	
+		$actions = new FieldSet(
+			new FormAction('doCreateMenu', _t('CustomMenuAdmin.CREATEMENU','Create Menu'))
+		);
 
+		$form = new Form($this, "LeftMenuForm", $fields, $actions);
+		
+		return $form;
+	}
+ 
 	function doUpdateMenu($data, $form) {
 		$id = $data['ID'];
 		
@@ -71,6 +86,33 @@ class CustomMenuAdmin extends LeftAndMain {
 		} else {
 			FormResponse::status_message(_t('MenuAdmin.UPDATEFAILED','Update Failed'), 'bad');
 		}
+
+		return FormResponse::respond();
+	}
+	
+	function doDeleteMenu($data, $form) {
+		$id = $data['ID'];
+		
+		$record = DataObject::get_by_id("CustomMenuHolder", $id);
+		
+		if($record->delete())
+			FormResponse::status_message(_t('MenuAdmin.DELETEMENU','Deleted Menu'), 'good');
+		 else
+			FormResponse::status_message(_t('MenuAdmin.DELETEFAILED','Delete Failed'), 'bad');
+
+		return FormResponse::respond();
+	}
+	
+	function doCreateMenu($data, $form) {
+		
+		$menu = new CustomMenuHolder();
+		$menu->Title = 'New Menu';
+		$menu->Slug = "new-menu";
+
+		if($menu->write())
+			FormResponse::status_message(_t('MenuAdmin.CREATEMENU','Menu Created'), 'good');
+		 else
+			FormResponse::status_message(_t('MenuAdmin.CREATEFAILED','Failed Creating Menu'), 'bad');
 
 		return FormResponse::respond();
 	}
