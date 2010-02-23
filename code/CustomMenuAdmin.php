@@ -1,4 +1,11 @@
 <?php
+/**
+ * CustomMenuAdmin creates an admin area that allows developers to
+ * create/edit/delete custom menu's for their site. These menu's can then be
+ * accessed via the Control CustomMenu(Slug)
+ * 
+ */
+
 class CustomMenuAdmin extends LeftAndMain {
 	static $url_segment = 'menus';
 	static $menu_title = 'Menus';
@@ -13,8 +20,8 @@ class CustomMenuAdmin extends LeftAndMain {
 	}
 
 	/**
-	 * get_menus retrieves all CustomMenuHolder objects from the database, which will be rendered
-	 * in the left pain by the template
+	 * get_menus retrieves all CustomMenuHolder objects from the database,
+         * which will be rendered in the left pain by the template.
 	 * 
 	 * @return DataObjectSet
 	 */
@@ -22,6 +29,16 @@ class CustomMenuAdmin extends LeftAndMain {
 		$result = DataObject::get('CustomMenuHolder');
 		return $result;
 	}
+
+        /**
+         * Basic action to display a blank pannel when the root node is selected
+         * from the left sitetree.
+         *
+         * @return <type> false
+         */
+        public function root() {
+            return false;
+        }
 	
 	/**
 	 * Generate the editform, only if there is a URL ID available
@@ -34,11 +51,14 @@ class CustomMenuAdmin extends LeftAndMain {
 		if($id) {
 			// Create form fields
 			$fields = new FieldSet(
-				new HiddenField('ID','id #',$id),
-				new HeaderField('MenuHeading',_t('CustomMenuAdmin.MENUHEADING','Edit Menu')),
-				new TextField('Title', _t('CustomMenuAdmin.MENUTITLE','Menu Title')),
-				new TextField('Slug', _t('CustomMenuAdmin.MENUSLUG','Menu Slug (used in your control call)')),
-				new CheckboxSetField('Pages','Pages in Menu',DataObject::get('Page',"ParentID = '0'"))
+                            new TabSet('Root', new Tab(
+                                _t('CustomMenus.MainTitle','Main'),
+                                new HiddenField('ID','id #',$id),
+                                new HeaderField('MenuHeading',_t('CustomMenuAdmin.MENUHEADING','Edit Menu')),
+                                new TextField('Title', _t('CustomMenuAdmin.MENUTITLE','Menu Title')),
+                                new TextField('Slug', _t('CustomMenuAdmin.MENUSLUG','Menu Slug (used in your control call)')),
+                                new TreeMultiselectField('Pages','Pages in Menu','SiteTree')
+                            ))
 			);
 	
 			$actions = new FieldSet(
