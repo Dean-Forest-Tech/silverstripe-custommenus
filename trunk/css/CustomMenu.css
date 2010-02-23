@@ -1,0 +1,20 @@
+#left #Form_LeftMenuForm {
+	padding: 5px;
+	background-color: #EEE;
+}
+    
+.right form#Form_EditForm .Actions {
+	text-align: right;
+}
+
+.right form#Form_EditForm .Actions .action {
+	padding: 3px 7px;
+	margin-top: 7px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.right form#Form_EditForm #Form_EditForm_action_doDeleteMenu:hover {
+	background-color: #ff0000;
+	color: #fff;
+}
