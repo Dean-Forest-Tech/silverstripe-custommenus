@@ -73,6 +73,10 @@ class CustomMenuAdmin extends LeftAndMain {
 			$form->loadDataFrom($currentMenu);
 
 			return $form;
+		} else {
+		    return new Form($this, "EditForm", new FieldSet(
+			    new HeaderField('RootLabel', 'Custom Menus'),
+			    new LabelField('PageDoesntExistLabel',_t('CustomMenuAdmin.ROOTPAGE',"Please select a menu to the left."))), new FieldSet());
 		}
 	}
 	
