@@ -18,3 +18,8 @@
 	background-color: #ff0000;
 	color: #fff;
 }
+
+/* Style the pages dropdown form */
+.right form#Form_EditForm_Pages ul {
+    padding-left: 15px !important;
+}
