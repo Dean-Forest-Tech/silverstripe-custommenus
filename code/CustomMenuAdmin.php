@@ -29,22 +29,14 @@ class CustomMenuAdmin extends LeftAndMain {
 		$result = DataObject::get('CustomMenuHolder');
 		return $result;
 	}
-
-        /**
-         * Basic action to display a blank pannel when the root node is selected
-         * from the left sitetree.
-         *
-         * @return <type> false
-         */
-        public function root() {
-            return false;
-        }
 	
 	/**
 	 * Generate the editform, only if there is a URL ID available
 	 * @see cms/code/LeftAndMain#getEditForm($id)
 	 */
 	function getEditForm($id = null) {
+		$pages = DataObject::get('SiteTree');
+
 		if(!$id)
 			$id = $this->urlParams['ID'];
 		
@@ -57,7 +49,7 @@ class CustomMenuAdmin extends LeftAndMain {
                                 new HeaderField('MenuHeading',_t('CustomMenuAdmin.MENUHEADING','Edit Menu')),
                                 new TextField('Title', _t('CustomMenuAdmin.MENUTITLE','Menu Title')),
                                 new TextField('Slug', _t('CustomMenuAdmin.MENUSLUG','Menu Slug (used in your control call)')),
-                                new TreeMultiselectField('Pages','Pages in Menu','SiteTree')
+                                new TreeMultiselectField('Pages',_t('CustomMenuAdmin.MENUPAGES','Pages in Menu'),$pages)
                             ))
 			);
 	
@@ -73,10 +65,6 @@ class CustomMenuAdmin extends LeftAndMain {
 			$form->loadDataFrom($currentMenu);
 
 			return $form;
-		} else {
-		    return new Form($this, "EditForm", new FieldSet(
-			    new HeaderField('RootLabel', 'Custom Menus'),
-			    new LabelField('PageDoesntExistLabel',_t('CustomMenuAdmin.ROOTPAGE',"Please select a menu to the left."))), new FieldSet());
 		}
 	}
 	
