@@ -14,6 +14,7 @@ class CustomMenuField extends OptionsetField {
 		$source = DataObject::get('SiteTree', "ParentID = 0");
 		$values = $this->value;
 		$output = '';
+		$items = array();
 
 		// Get values from the join, if available
 		if(is_object($this->form)) {
@@ -43,7 +44,7 @@ class CustomMenuField extends OptionsetField {
 		return $output;
 	}
 
-        private function makeList($pages, $items, $level = null) {
+        private function makeList($pages, $items = null, $level = null) {
             if(isset($level)) {
                 $listOptions = "id=\"{$this->id()}\" class=\"optionset checkboxsetfield{$this->extraClass()}\"";
                 $padding = "";
@@ -70,8 +71,7 @@ class CustomMenuField extends OptionsetField {
 			if(isset($items))
 				$checked = (in_array($key, $items) || in_array($key, $this->defaultItems)) ? ' checked="checked"' : '';
 
-			$disabled = ($this->disabled || in_array($key, $this->disabledItems)) ? $disabled = ' disabled="disabled"' : '';
-			$output .= "<li class=\"$extraClass\"><input id=\"$itemID\" name=\"$this->name[$key]\" type=\"checkbox\" value=\"$key\"$checked $disabled class=\"checkbox\" /> <label for=\"$itemID\">$value</label></li>\n";
+			$output .= "<li class=\"$extraClass\"><input id=\"$itemID\" name=\"$this->name[$key]\" type=\"checkbox\" value=\"$key\"$checked class=\"checkbox\" /> <label for=\"$itemID\">$value</label></li>\n";
 
                         if($childPages = DataObject::get("Page", "ParentID = ".$page->ID))
                             $output .= $this->makeList($childPages, $items);
