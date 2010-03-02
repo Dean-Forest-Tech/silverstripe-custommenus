@@ -3,6 +3,7 @@ class CustomMenuHolder extends DataObject {
 	static $db = array(
 		'Title'	=> 'Text',
 		'Slug'	=> 'Text',
+		'Order'	=> 'Text',
 	);
 
 	static $many_many = array(

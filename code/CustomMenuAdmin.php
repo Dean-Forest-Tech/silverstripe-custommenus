@@ -60,7 +60,9 @@ class CustomMenuAdmin extends LeftAndMain {
                                     new TextField('Title', _t('CustomMenuAdmin.MENUTITLE','Menu Title')),
                                     new TextField('Slug', _t('CustomMenuAdmin.MENUSLUG','Menu Slug (used in your control call)'))
                                 ), new Tab(_t('CustomMenus.PAGESTABTITLE','Pages'),
-                                    new CustomMenuField('Pages',_t('CustomMenuAdmin.MENUPAGES','Pages in Menu'))
+                                    new CustomMenuField('Pages',_t('CustomMenuAdmin.MENUPAGES','Pages in menu'))
+                                ), new Tab(_t('CustomMenus.ORDERTABTITLE','Order'),
+                                    new CustomMenuOrderField('Order',_t('CustomMenuAdmin.MENUPAGES','Order of pages in menu'))
                                 )
                             )
 			);
