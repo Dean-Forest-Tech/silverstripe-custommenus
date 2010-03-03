@@ -58,7 +58,7 @@ class CustomMenuField extends OptionsetField {
                 foreach($pages as $page) {
                     if(!($page instanceof ErrorPage)) {
 			$key = $page->ID;
-			$value = $page->Title;
+			$value = $page->MenuTitle;
 
                         $odd = ($odd + 1) % 2;
 			$extraClass = $odd ? 'odd' : 'even';

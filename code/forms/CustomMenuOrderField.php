@@ -15,35 +15,36 @@ class CustomMenuOrderField extends FormField {
 	}
 
 	function Field() {
-		return $this->getOrderedPages($this->Value());
-	}
-
-	private function getOrderedPages($order = null) {
-	    //// Get values from the join, if available
+            ////// Get values from the join, if available
 	    if(is_object($this->form)) {
 		$menu = $this->form->getRecord();
-		
-		if($menu->Order)
-			$order = explode(',', $menu->Order);
+
+
+		if($menu->Order) {
+                    $order = str_replace(' ', '', $menu->Order);
+                    $order = explode(',', $order);
+                }
 
 		$output = "<ul id=\"{$this->id()}\">";
 
-		if(isset($order) && is_array($order) && count($order) > 0) {
+		if(isset($order) && is_array($order) && (count($order) > 0) && ($menu->Pages()->Count() > 0)) {
 		    foreach($order as $item) {
-			$output .= "<li>&raquo;&nbsp;&nbsp;{$menu->Pages()->find('ID',$item)->Title} ({$menu->Pages()->find('ID',$item)->ID})</li>";
+                        if($menu->Pages()->find('ID',$item))
+                            $output .= "<li>&raquo;&nbsp;&nbsp;{$menu->Pages()->find('ID',$item)->MenuTitle} (ID #: {$menu->Pages()->find('ID',$item)->ID})</li>";
 		    }
 		} else {
 		    foreach($menu->Pages() as $item) {
-			$output .= "<li>&raquo;&nbsp;&nbsp;{$item->Title} ({$item->ID})</li>";
+			$output .= "<li>&raquo;&nbsp;&nbsp;{$item->MenuTitle} (ID #: {$item->ID})</li>";
 		    }
 		}
 
 		$output .= "</ul>";
-		
+
 		return $output;
 	    } else
 		return "<span>Unable to find any pages linked to this menu</span>";
 	}
+
 
 	function InternallyLabelledField() {
 		if(!$this->value) $this->value = $this->Title();
