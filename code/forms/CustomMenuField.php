@@ -36,7 +36,7 @@ class CustomMenuField extends OptionsetField {
 
 		if($source == null) {
 			$source = array();
-			$output = "<li>No options available</li>";
+			$output = "<span>No options available</span>";
 		}
 
 		if($source) $output .= $this->makeList($source, $items, 0);
@@ -45,16 +45,14 @@ class CustomMenuField extends OptionsetField {
 	}
 
         private function makeList($pages, $items = null, $level = null) {
-            if(isset($level)) {
+            if(isset($level))
                 $listOptions = "id=\"{$this->id()}\" class=\"optionset checkboxsetfield{$this->extraClass()}\"";
-                $padding = "";
-            } else {
+            else
                 $listOptions = "";
-                $padding = 'style="padding-left: 20px;"';
-            }
+
             $odd = 0;
 
-            $output = "<ul $padding $listOptions>";
+            $output = "<ul $listOptions>";
 
             if(count($pages)) {
                 foreach($pages as $page) {

@@ -62,7 +62,8 @@ class CustomMenuAdmin extends LeftAndMain {
                                 ), new Tab(_t('CustomMenus.PAGESTABTITLE','Pages'),
                                     new CustomMenuField('Pages',_t('CustomMenuAdmin.MENUPAGES','Pages in menu'))
                                 ), new Tab(_t('CustomMenus.ORDERTABTITLE','Order'),
-                                    new CustomMenuOrderField('Order',_t('CustomMenuAdmin.MENUPAGES','Order of pages in menu'))
+                                    new CustomMenuOrderField('OrderList',_t('CustomMenuAdmin.MENUORDERLIST','This is how your menu is currently ordered')),
+                                    new TextField('Order',_t('CustomMenuAdmin.MENUORDER','Customise this order (list of page IDs, seperated by a comma)'))
                                 )
                             )
 			);
