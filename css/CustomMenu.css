@@ -20,6 +20,16 @@
 }
 
 /* Style the pages dropdown form */
-.right form#Form_EditForm_Pages ul {
-    padding-left: 15px !important;
+.right form #Form_EditForm_Pages {
+    padding-left: 10px;
+}
+.right form #Form_EditForm_Pages ul {
+    padding-left: 20px;
+}
+
+/* Styles for page order list */
+.right form #Form_EditForm_OrderList li {
+    padding: 5px;
+    color: #666;
+    font-size: 11px;
 }
