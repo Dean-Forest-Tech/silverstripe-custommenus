@@ -69,7 +69,7 @@ class CustomMenuField extends OptionsetField {
 			if(isset($items))
 				$checked = (in_array($key, $items) || in_array($key, $this->defaultItems)) ? ' checked="checked"' : '';
 
-			$output .= "<li class=\"$extraClass\"><input id=\"$itemID\" name=\"$this->name[$key]\" type=\"checkbox\" value=\"$key\"$checked class=\"checkbox\" /> <label for=\"$itemID\">$value</label></li>\n";
+			$output .= "<li class=\"$extraClass\"><input id=\"$itemID\" name=\"$this->name[$key]\" type=\"checkbox\" value=\"$key\"$checked class=\"checkbox\" /> <label for=\"$itemID\">$value</label>\n";
 
                         if($childPages = DataObject::get("Page", "ParentID = ".$page->ID))
                             $output .= $this->makeList($childPages, $items);
