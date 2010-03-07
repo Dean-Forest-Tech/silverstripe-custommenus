@@ -16,6 +16,7 @@ class CustomMenuAdmin extends LeftAndMain {
 	
 	public function init() {
 		parent::init();
+		Requirements::javascript('custommenus/javascript/CustomMenu_right.js');
 		Requirements::css('custommenus/css/CustomMenu.css');
 	}
         
