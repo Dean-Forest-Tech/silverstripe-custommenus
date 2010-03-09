@@ -55,23 +55,23 @@ class CustomMenuAdmin extends LeftAndMain {
 			$fields = new FieldSet(
                             new TabSet('Root',
                                 new Tab(
-                                    _t('CustomMenus.MAINTABTITLE','Main'),
+                                    _t('CustomMenus.FormMain'),
                                     new HiddenField('ID','id #',$id),
-                                    new HeaderField('MenuHeading',_t('CustomMenuAdmin.MENUHEADING','Edit Menu')),
-                                    new TextField('Title', _t('CustomMenuAdmin.MENUTITLE','Menu Title')),
-                                    new TextField('Slug', _t('CustomMenuAdmin.MENUSLUG','Menu Slug (used in your control call)'))
-                                ), new Tab(_t('CustomMenus.PAGESTABTITLE','Pages'),
-                                    new CustomMenuField('Pages',_t('CustomMenuAdmin.MENUPAGES','Pages in menu'))
-                                ), new Tab(_t('CustomMenus.ORDERTABTITLE','Order'),
-                                    new CustomMenuOrderField('OrderList',_t('CustomMenuAdmin.MENUORDERLIST','This is how your menu is currently ordered')),
-                                    new TextField('Order',_t('CustomMenuAdmin.MENUORDER','Customise this order (list of page IDs, seperated by a comma)'))
+                                    new HeaderField('MenuHeading',_t('CustomMenus.FormMainHeader')),
+                                    new TextField('Title', _t('CustomMenus.FormMainTitle')),
+                                    new TextField('Slug', _t('CustomMenus.FormMainSlug'))
+                                ), new Tab(_t('CustomMenus.FormPages'),
+                                    new CustomMenuField('Pages',_t('CustomMenus.FormPagesPages'))
+                                ), new Tab(_t('CustomMenus.FormOrder'),
+                                    new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList')),
+                                    new TextField('Order',_t('CustomMenus.FormOrderOrder'))
                                 )
                             )
 			);
 	
 			$actions = new FieldSet(
-				new FormAction('doDeleteMenu', _t('CustomMenuAdmin.DELETEMENU','Delete Menu')),
-				new FormAction('doUpdateMenu', _t('CustomMenuAdmin.UPDATEMENU','Update Menu'))
+				new FormAction('doDeleteMenu', _t('CustomMenus.FormActionDelete')),
+				new FormAction('doUpdateMenu', _t('CustomMenus.FormActionUpdate'))
 			);
 
 			$form = new Form($this, "EditForm", $fields, $actions);

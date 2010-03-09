@@ -1,4 +1,4 @@
-<h2><% _t('CUSTOMMENUS.LEFTTITLE','Custom Menus') %></h2>
+<h2><% _t('CustomMenus.Title') %></h2>
 <div id="treepanes" style="overflow-y: auto;">
 	$LeftMenuForm
 	<% if get_menus %>
