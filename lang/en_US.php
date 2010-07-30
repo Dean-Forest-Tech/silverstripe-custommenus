@@ -16,8 +16,17 @@ $lang['en_US']['CustomMenus']['FormOrder'] = 'Order';
 $lang['en_US']['CustomMenus']['FormOrderOrderList'] = 'This is how your menu is currently ordered';
 $lang['en_US']['CustomMenus']['FormOrderOrder'] = 'Customise this order (list of page IDs, seperated by a comma)';
 
+// Messages
+$lang['en_US']['CustomMenus']['FormSaved'] = 'Saved';
+$lang['en_US']['CustomMenus']['FormPublished'] = 'Published';
+$lang['en_US']['CustomMenus']['FormDeleted'] = 'Deleted';
+$lang['en_US']['CustomMenus']['FormUnpublished'] = 'Menu removed from live site';
+$lang['en_US']['CustomMenus']['FormError'] = 'There was an error';
+
 // Form actions
-$lang['en_US']['CustomMenus']['FormActionDelete'] = 'Delete Menu';
-$lang['en_US']['CustomMenus']['FormActionUpdate'] = 'Update Menu';
+$lang['en_US']['CustomMenus']['FormActionDelete'] = 'Delete';
+$lang['en_US']['CustomMenus']['FormActionUnpublish'] = 'Unpublish';
+$lang['en_US']['CustomMenus']['FormActionSave'] = 'Save';
+$lang['en_US']['CustomMenus']['FormActionPublish'] = 'Publish';
 
 ?>
