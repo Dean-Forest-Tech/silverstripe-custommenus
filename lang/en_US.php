@@ -3,6 +3,8 @@ global $lang;
 
 // Core translations
 $lang['en_US']['CustomMenus']['Title'] = 'Custom Menus';
+$lang['en_US']['CustomMenus']['TreeTitle'] = 'Menus';
+$lang['en_US']['CustomMenus']['CreateMenu'] = 'Create Menu';
 $lang['en_US']['CustomMenus']['ChooseMenu'] = 'Please choose a menu from the left, or select "Create Menu" to create a new menu';
 
 // Form fields and headings
@@ -19,5 +21,14 @@ $lang['en_US']['CustomMenus']['FormOrderOrder'] = 'Customise this order (list of
 // Form actions
 $lang['en_US']['CustomMenus']['FormActionDelete'] = 'Delete Menu';
 $lang['en_US']['CustomMenus']['FormActionUpdate'] = 'Update Menu';
+
+// Menu messages
+$lang['en_US']['CustomMenus']['UpdateSuccess'] = 'Updated Menu';
+$lang['en_US']['CustomMenus']['UpdateFail'] = 'Update Failed';
+$lang['en_US']['CustomMenus']['DeleteSuccess'] = 'Deleted Menu';
+$lang['en_US']['CustomMenus']['DeleteFail'] = 'Delete Failed';
+$lang['en_US']['CustomMenus']['CreateSuccess'] = 'Created Menu';
+$lang['en_US']['CustomMenus']['CreateFail'] = 'Creation Failed';
+
 
 ?>
