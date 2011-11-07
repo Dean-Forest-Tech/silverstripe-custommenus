@@ -7,5 +7,5 @@ Install Instructions:
     SilverStripe root folder
  2) Run dev/build?flush=1
  3) Visit admin/menus/ to setup your custom menu's
- 4) In you templtate, use:
+ 4) In you template, use:
     <% control CustomMenu(slug) %><your HTML here /><% end_control %>

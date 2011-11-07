@@ -1,7 +1,7 @@
 <?php
 /**
  * CustomMenuOrderField field generates a hidden field that contains the
- * ordering of pages in the menu. It also generates a jquery order list that allows users to
+ * ordering of pages in the menu. It also generates a jquery order list that allows users to (what?)
  *
  */
 class CustomMenuOrderField extends FormField {

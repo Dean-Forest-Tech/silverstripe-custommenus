@@ -24,7 +24,7 @@ class CustomMenuAdmin extends LeftAndMain {
     * Basic action to display a blank pannel when the root node is selected
     * from the left sitetree.
     *
-    * @return <type> false
+	* @return <type> false
     */
     public function root() {
         return false;
@@ -32,7 +32,7 @@ class CustomMenuAdmin extends LeftAndMain {
 
     /**
     * get_menus retrieves all CustomMenuHolder objects from the database,
-    * which will be rendered in the left pain by the template.
+    * which will be rendered in the left pannel by the template.
     *
     * @return DataObjectSet
     */
@@ -42,9 +42,10 @@ class CustomMenuAdmin extends LeftAndMain {
     }
 
     /**
-    * Generate the editform, only if there is a URL ID available
-    * @see cms/code/LeftAndMain#getEditForm($id)
-    */
+    * Generate the editform, only if there is a URL ID available.
+	*
+	* @see cms/code/LeftAndMain#getEditForm($id)
+	*/
     function getEditForm($id = null) {
         if(!$id)
             $id = $this->urlParams['ID'];
