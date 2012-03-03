@@ -16,6 +16,7 @@ class CustomMenuAdmin extends LeftAndMain {
 	
     public function init() {
         parent::init();
+        Requirements::javascript('custommenus/javascript/CustomMenu.js');
         Requirements::javascript('custommenus/javascript/CustomMenu_right.js');
         Requirements::css('custommenus/css/CustomMenu.css');
     }
@@ -142,5 +143,45 @@ class CustomMenuAdmin extends LeftAndMain {
             FormResponse::status_message(_t('CustomMenus.CreateFail','Creation Failed'), 'bad');
 
         return FormResponse::respond();
+    }
+    
+    public function Subsites() {
+        $accessPerm = 'CMS_ACCESS_'. $this->owner->class;
+
+        // If there's a default site then main site has no meaning
+        $showMainSite = !DataObject::get_one('Subsite',"\"DefaultSite\"=1 AND \"IsPublic\"=1");
+        $subsites = Subsite::accessible_sites($accessPerm, $showMainSite);
+
+        return $subsites;
+    }
+    
+    /**
+     * Method used by subsites to generate dropdown menu
+     * 
+     * @return string 
+     */
+    public function SubsiteList() {
+        if($this->Subsites() && class_exists('Subsite')) {
+            $list = $this->Subsites();
+
+            $currentSubsiteID = Subsite::currentSubsiteID();
+
+            if($list->Count() > 1) {
+                $output = '<select id="SubsitesSelect">';
+
+                foreach($list as $subsite) {
+                    $selected = $subsite->ID == $currentSubsiteID ? ' selected="selected"' : '';
+
+                    $output .= "\n<option value=\"{$subsite->ID}\"$selected>". Convert::raw2xml($subsite->Title) . "</option>";
+                }
+
+                $output .= '</select>';
+
+                Requirements::javascript('subsites/javascript/LeftAndMain_Subsites.js');
+                return $output;
+            } else if($list->Count() == 1)
+                return $list->First()->Title;
+        } else
+            return false;
     }
 }
