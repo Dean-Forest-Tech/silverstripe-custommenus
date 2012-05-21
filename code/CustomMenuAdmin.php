@@ -38,7 +38,7 @@ class CustomMenuAdmin extends LeftAndMain {
     * @return DataObjectSet
     */
     public function get_menus() {
-        $result = DataObject::get('CustomMenuHolder');
+        $result = DataList::create('CustomMenuHolder');
         return $result;
     }
 
@@ -47,39 +47,22 @@ class CustomMenuAdmin extends LeftAndMain {
 	*
 	* @see cms/code/LeftAndMain#getEditForm($id)
 	*/
-    function getEditForm($id = null) {
+    function getEditForm($id = null, $fields = null) {
         if(!$id)
             $id = $this->urlParams['ID'];
 
         if($id) {
-            // Create form fields
-            $fields = new FieldSet(
-                new TabSet('Root',
-                new Tab(
-                    _t('CustomMenus.FormMain','Main'),
-                    new HiddenField('ID','id #',$id),
-                    new HeaderField('MenuHeading',_t('CustomMenus.FormMainHeader','Edit Menu')),
-                    new TextField('Title', _t('CustomMenus.FormMainTitle','Menu Title')),
-                    new TextField('Slug', _t('CustomMenus.FormMainSlug','Menu Slug (used in your control call)'))
-                ), new Tab(_t('CustomMenus.FormPages','Pages'),
-                    new CustomMenuField('Pages',_t('CustomMenus.FormPagesPages','Pages in menu'))
-                ), new Tab(_t('CustomMenus.FormOrder','Order'),
-                    new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')),
-                    new TextField('Order',_t('CustomMenus.FormOrderOrder','Customise this order (list of page IDs, seperated by a comma)'))
-                )
-                )
-            );
-
-            $actions = new FieldSet(
-                new FormAction('doDeleteMenu', _t('CustomMenus.FormActionDelete','Delete Menu')),
-                new FormAction('doUpdateMenu', _t('CustomMenus.FormActionUpdate','Update Menu'))
-            );
+            $currentMenu = DataObject::get_by_id('CustomMenuHolder',$id);
+            $fields = $currentMenu->getCMSFields();
+            $actions = $currentMenu->getCMSActions();
 
             $form = new Form($this, "EditForm", $fields, $actions);
-
-            $currentMenu = DataObject::get_by_id('CustomMenuHolder',$id);
-
+            $form->addExtraClass('root-form');
+            $form->addExtraClass('cms-edit-form cms-panel-padded center');
+            
             $form->loadDataFrom($currentMenu);
+
+            $this->extend('updateEditForm', $form);
 
             return $form;
         }
