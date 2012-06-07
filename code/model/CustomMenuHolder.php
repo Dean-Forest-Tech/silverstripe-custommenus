@@ -10,42 +10,29 @@ class CustomMenuHolder extends DataObject {
         'Pages'	=> 'SiteTree'
     );
     
+    public static $summary_fields = array(
+        'Title' => 'Menu Title',
+        'Slug'  => 'Menu Slug'
+    );
+
     public function getCMSFields() {
-        // Create form fields
-        $fields = new FieldList(
-            new TabSet('Root',
-            new Tab(
-                _t('CustomMenus.FormMain','Main'),
-                new HiddenField('ID','id #',$id),
-                new HeaderField('MenuHeading',_t('CustomMenus.FormMainHeader','Edit Menu')),
-                new TextField('Title', _t('CustomMenus.FormMainTitle','Menu Title')),
-                new TextField('Slug', _t('CustomMenus.FormMainSlug','Menu Slug (used in your control call)'))
-            ), new Tab(_t('CustomMenus.FormPages','Pages'),
-                new CustomMenuField('Pages',_t('CustomMenus.FormPagesPages','Pages in menu'))
-            ), new Tab(_t('CustomMenus.FormOrder','Order'),
-                new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')),
-                new TextField('Order',_t('CustomMenus.FormOrderOrder','Customise this order (list of page IDs, seperated by a comma)'))
-            )
-            )
-        );
+        $fields = parent::getCMSFields();
+        
+        $fields->addFieldToTab('Root.Main', new HeaderField('MenuSettings',_t('CustomMenus.FormSettingsHeader','Menu Settings')));
+        $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
+        $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your control call)')));
+        
+        $fields->addFieldToTab('Root.Main', new HeaderField('MenuPages',_t('CustomMenus.FormPagesHeader','Pages in this Menu')));
+        $fields->addFieldToTab('Root.Main', new TreeMultiselectField('Pages',_t('CustomMenus.FormPagesPages','Select pages'), 'SiteTree'));
+        
+        $fields->addFieldToTab('Root.Main', new HeaderField('MenuOrder',_t('CustomMenus.FormOrderHeader','Order of Pages')));
+        $fields->addFieldToTab('Root.Main', new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')));
+        $fields->addFieldToTab('Root.Main', new TextField('Order',_t('CustomMenus.FormOrderOrder','Customise this order (list of page IDs, seperated by a comma)')));
         
         $this->extend('updateCMSFields', $fields);
         
         return $fields;
     }
-    
-    public function getCMSActions() {
-        $actions = new FieldList(
-            new FormAction('doDeleteMenu', _t('CustomMenus.FormActionDelete','Delete Menu')),
-            new FormAction('doUpdateMenu', _t('CustomMenus.FormActionUpdate','Update Menu'))
-        );
-        
-        $this->extend('updateCMSActions', $actions);
-        
-        return $actions;
-    }
-    
-    
 
     /**
     * Create default menu items if no items exist

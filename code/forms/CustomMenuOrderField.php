@@ -14,7 +14,7 @@ class CustomMenuOrderField extends FormField {
 		parent::__construct($name, $title, $value, $form);
 	}
 
-	function Field() {
+	function Field($properties = array()) {
             ////// Get values from the join, if available
 	    if(is_object($this->form)) {
 		$menu = $this->form->getRecord();
