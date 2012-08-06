@@ -8,7 +8,7 @@ class CustomMenu extends Extension {
 				if($menu->Order)
 				    $order = explode(',', $menu->Order);
 
-				$pages = new DataObjectSet();
+				$pages = new ArrayList();
 
 				if(isset($order) && is_array($order) && count($order) > 0) {
 				    foreach($order as $item) {
