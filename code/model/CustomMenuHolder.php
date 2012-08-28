@@ -11,9 +11,13 @@ class CustomMenuHolder extends DataObject {
     );
     
     public static $summary_fields = array(
-        'Title' => 'Menu Title',
-        'Slug'  => 'Menu Slug'
+        'Title' => 'Title',
+        'Slug'  => 'Slug'
     );
+	
+	public static $searchable_fields = array(
+		'Title'
+	);
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
