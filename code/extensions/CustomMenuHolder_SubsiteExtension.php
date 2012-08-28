@@ -5,8 +5,8 @@
  *
  * @author morven
  */
-class CustomMenuHolder_SubsiteExtension extends DataObjectDecorator {
-    public function extraStatics() {
+class CustomMenuHolder_SubsiteExtension extends DataExtension {
+    public function extraStatics($class = null, $extension = null) {
         return array(
             'has_one' => array(
                 'Subsite' => 'Subsite'
@@ -14,9 +14,7 @@ class CustomMenuHolder_SubsiteExtension extends DataObjectDecorator {
         );
     }
 
-    function updateCMSFields(FieldSet &$fields) {
+    function updateCMSFields(FieldList $fields) {
         
     }
 }
-
-?>
