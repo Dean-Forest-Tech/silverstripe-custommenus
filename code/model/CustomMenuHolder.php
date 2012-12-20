@@ -56,7 +56,7 @@ class CustomMenuHolder extends DataObject {
         $controller = Controller::curr();
         
         // If subsites enabled
-        if(class_exists('Subsite') && $controller->CurrentSubsite())
+        if(class_exists('Subsite') && method_exists($controller, 'CurrentSubsite') && $controller->CurrentSubsite())
             $this->SubsiteID = $controller->CurrentSubsite()->ID;
         
         // Ensure the slug is URL safe
