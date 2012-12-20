@@ -53,11 +53,9 @@ class CustomMenuHolder extends DataObject {
     public function onBeforeWrite() {
         parent::onBeforeWrite();
         
-        $controller = Controller::curr();
-        
         // If subsites enabled
-        if(class_exists('Subsite') && method_exists($controller, 'CurrentSubsite') && $controller->CurrentSubsite())
-            $this->SubsiteID = $controller->CurrentSubsite()->ID;
+        if(class_exists('Subsite') && $subsite = Subsite::currentSubsite())
+            $this->SubsiteID = $subsite->ID;
         
         // Ensure the slug is URL safe
         $this->Slug = ($this->Slug) ? Convert::raw2url($this->Slug) : Convert::raw2url($this->Title);
