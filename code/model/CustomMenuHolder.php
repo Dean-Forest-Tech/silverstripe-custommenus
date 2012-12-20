@@ -22,6 +22,8 @@ class CustomMenuHolder extends DataObject {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         
+        $fields->removeByName('SubsiteID');
+        
         if(!$this->ID) {
             $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
             $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your control call)')));
@@ -44,10 +46,21 @@ class CustomMenuHolder extends DataObject {
         return $fields;
     }
     
+    public function populateDefaults() {
+        parent::populateDefaults();
+    }
+    
     public function onBeforeWrite() {
         parent::onBeforeWrite();
         
-        $this->Slug = strtolower(urlencode($this->Slug));        
+        $controller = Controller::curr();
+        
+        // If subsites enabled
+        if(class_exists('Subsite') && $controller->CurrentSubsite())
+            $this->SubsiteID = $controller->CurrentSubsite()->ID;
+        
+        // Ensure the slug is URL safe
+        $this->Slug = ($this->Slug) ? Convert::raw2url($this->Slug) : Convert::raw2url($this->Title);
     }
 
     /**

@@ -17,6 +17,19 @@ class CustomMenuAdmin extends ModelAdmin {
     public function init() {
         parent::init();
     }
+    
+    public function getList() {
+        $list = parent::getList();
+        
+        // If subsites in use, filter by subsite
+        if(class_exists('Subsite') && $this->modelClass == 'CustomMenuHolder') {
+            $subsite_id = ($this->owner->CurrentSubsite()) ? $this->owner->CurrentSubsite()->ID : 0;            
+            
+            $list->where("SubsiteID = '{$subsite_id}'");
+        }
+            
+        return $list;
+    }
 	
 	public function getEditForm($id = null, $fields = null) {
     	$form = parent::getEditForm($id, $fields);

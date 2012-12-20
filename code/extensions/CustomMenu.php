@@ -1,10 +1,20 @@
 <?php
 class CustomMenu extends Extension {
 	public function CustomMenu($menu = null) {
-		$menu = Convert::raw2sql($menu);
 		if($menu) {
-			if(DataObject::get_one('CustomMenuHolder',"Slug = '$menu'")) {
-				$menu = DataObject::get_one('CustomMenuHolder',"Slug = '$menu'");
+		    // Ensure argument is safe for database
+		    $menu = Convert::raw2sql($menu);
+		    
+		    $filter = array(
+		        'Slug' => $menu
+		    );
+		    
+		    // Add subsites support
+		    if(class_exists('Subsite') && $this->owner->CurrentSubsite())
+		        $filter['SubsiteID'] = $this->owner->CurrentSubsite()->ID;
+		    
+			if($menu = CustomMenuHolder::get()->filter($filter)->first()) {
+			
 				if($menu->Order)
 				    $order = explode(',', $menu->Order);
 
