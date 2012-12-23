@@ -43,6 +43,10 @@ class CustomMenuAdmin extends ModelAdmin {
             ->removeComponentsByType('GridFieldExportButton')
             ->removeComponentsByType('GridFieldPrintButton');
 
+        // Disable creation button if create permissions
+        if(!(Permission::check('ADMIN') || Permission::check('MENU_CREATE')))
+            $field_config->removeComponentsByType('GridFieldAddNewButton');
+            
         return $form;
     }
 }

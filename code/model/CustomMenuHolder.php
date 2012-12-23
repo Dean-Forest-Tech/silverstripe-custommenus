@@ -1,5 +1,5 @@
 <?php
-class CustomMenuHolder extends DataObject {
+class CustomMenuHolder extends DataObject implements PermissionProvider {
     public static $db = array(
         'Title'	=> 'Text',
         'Slug'	=> 'Text',
@@ -104,5 +104,66 @@ class CustomMenuHolder extends DataObject {
                     DB::alteration_message("Footer menu created","created");
             }
         }
+    }
+    
+    /*   Permissions
+     * -----------------------------------------------------------------------
+     */
+    public function providePermissions() {
+        return array(
+            'MENU_VIEWALL' => array(
+                'name' => 'View all menus',
+                'help' => 'Allow viewing of all menus in the "Menus" section',
+                'category' => 'Menus',
+                'sort' => 100
+            ),
+            'MENU_CREATE' => array(
+                'name' => 'Create menus',
+                'help' => 'Allow creation of menus in the "Menus" section',
+                'category' => 'Menus',
+                'sort' => 110
+            ),
+            'MENU_DELETE' => array(
+                'name' => 'Delete menus',
+                'help' => 'Allow deleting of menus in the "Menus" section',
+                'category' => 'Menus',
+                'sort' => 120
+            ),
+            'MENU_EDIT' => array(
+                'name' => 'Edit menus',
+                'help' => 'Allow editing of menus in the "Menu" section',
+                'category' => 'Menus',
+                'sort' => 130
+            ),
+        );
+    }
+
+	
+    public function canView($member = null) {
+    	if(Permission::check('ADMIN') || Permission::check('MENU_VIEWALL'))
+    		return true;
+		else 
+			return false;
+    }
+    
+    public function canCreate($member = null) {
+    	if(Permission::check('ADMIN') || Permission::check('MENU_CREATE'))
+    		return true;
+		else 
+			return false;
+    }
+    
+    public function canDelete($member = null) {
+    	if(Permission::check('ADMIN') || Permission::check('MENU_DELETE'))
+    		return true;
+		else 
+			return false;
+    }
+    
+    public function canEdit($member = null) {
+    	if(Permission::check('ADMIN') || Permission::check('MENU_EDIT'))
+			return true;
+		else 
+			return false;
     }
 }
