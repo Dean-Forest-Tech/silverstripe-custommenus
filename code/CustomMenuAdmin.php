@@ -36,16 +36,21 @@ class CustomMenuAdmin extends ModelAdmin {
 		
 		$fields = $form->Fields();
 		$gridField = $fields->fieldByName('CustomMenuHolder');
-			
-		// Tidy up category config
+		
+		// Tidy up category config and remove default add button
 		$field_config = $gridField->getConfig();
 		$field_config
             ->removeComponentsByType('GridFieldExportButton')
-            ->removeComponentsByType('GridFieldPrintButton');
+            ->removeComponentsByType('GridFieldPrintButton')
+            ->removeComponentsByType('GridFieldAddNewButton');
 
-        // Disable creation button if create permissions
-        if(!(Permission::check('ADMIN') || Permission::check('MENU_CREATE')))
-            $field_config->removeComponentsByType('GridFieldAddNewButton');
+        // Add creation button if member has create permissions
+        if(Permission::check('ADMIN') || Permission::check('MENU_CREATE')) {
+		    $add_button = new GridFieldAddNewButton('toolbar-header-left');
+		    $add_button->setButtonName('Add Menu');
+		    
+            $field_config->addComponent($add_button);
+        }
             
         return $form;
     }

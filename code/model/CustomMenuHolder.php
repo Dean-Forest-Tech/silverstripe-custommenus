@@ -22,6 +22,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         
+        $fields->removeByName('Pages');
         $fields->removeByName('SubsiteID');
         
         if(!$this->ID) {
