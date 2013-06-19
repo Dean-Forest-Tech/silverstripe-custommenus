@@ -1,7 +1,7 @@
 <?php
 class CustomMenu extends Extension {
 	public function CustomMenu($menu = null) {
-		if($menu) {
+		if(isset($menu)) {
 		    // Ensure argument is safe for database
 		    $menu = Convert::raw2sql($menu);
 		    
@@ -35,5 +35,18 @@ class CustomMenu extends Extension {
 			}
 		} else 
 			return false;
+	}
+	
+	public function RenderedCustomMenu($menu = null) {
+	    if(isset($menu)) {
+	        $vars = array(
+	            'Slug' => $menu,
+	            'Menu' => $this->owner->CustomMenu($menu)
+            );
+            
+            return $this->owner->renderWith('CustomMenu', $vars);
+	    } else
+	        return false;
+	
 	}
 }
