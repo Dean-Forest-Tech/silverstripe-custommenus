@@ -6,15 +6,9 @@
  * @author morven
  */
 class CustomMenuHolder_SubsiteExtension extends DataExtension {
-    public function extraStatics($class = null, $extension = null) {
-        return array(
-            'has_one' => array(
-                'Subsite' => 'Subsite'
-            )
-        );
-    }
+    private static $has_one => array(
+        'Subsite' => 'Subsite'
+    );
 
-    function updateCMSFields(FieldList $fields) {
-        
-    }
+    public function updateCMSFields(FieldList $fields) {}
 }
