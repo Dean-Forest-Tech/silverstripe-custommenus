@@ -6,7 +6,7 @@
  * @author morven
  */
 class CustomMenuHolder_SubsiteExtension extends DataExtension {
-    private static $has_one => array(
+    private static $has_one = array(
         'Subsite' => 'Subsite'
     );
 
