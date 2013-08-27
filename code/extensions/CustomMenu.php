@@ -1,4 +1,5 @@
 <?php
+
 class CustomMenu extends Extension {
 	public function CustomMenu($menu = null) {
 		if(isset($menu)) {

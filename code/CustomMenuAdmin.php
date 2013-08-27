@@ -47,7 +47,7 @@ class CustomMenuAdmin extends ModelAdmin {
         // Add creation button if member has create permissions
         if(Permission::check('ADMIN') || Permission::check('MENU_CREATE')) {
 		    $add_button = new GridFieldAddNewButton('toolbar-header-left');
-		    $add_button->setButtonName('Add Menu');
+		    $add_button->setButtonName(_t('CustomMenus.AddMenu','Add Menu'));
 		    
             $field_config->addComponent($add_button);
         }

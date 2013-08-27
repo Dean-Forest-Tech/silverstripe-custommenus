@@ -1,0 +1,16 @@
+nl:
+  CustomMenuHolder:
+    PLURALNAME: 'Custom Menu Houders'
+    SINGULARNAME: 'Custom Menu Houder'
+  CustomMenus:
+    AddMenu: 'Menu toevoegen'
+    FormMainSlug: 'Slug (voor het aanroepen via loop)'
+    FormMainTitle: Titel
+    FormOrderHeader: 'Orde van pagina''s
+    FormOrderOrder: 'Pas deze volgorde (lijst met pagina-id's, gescheiden door een komma)'
+    FormOrderOrderList: 'Dit is de huidige volgorde van het menu'
+    FormPagesHeader: 'Pagina''s in het menu'
+    FormPagesPages: 'Selecteer pagina''s'
+    FormSettingsHeader: 'Menu Instellingen'
+  CustomMenuAdmin:
+    MENUTITLE: Menus
