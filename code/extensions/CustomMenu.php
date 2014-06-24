@@ -18,10 +18,6 @@ class CustomMenu extends Extension {
                 'Slug' => $menu
             );
 
-            // Add subsites support
-            if(class_exists('Subsite') && $this->owner->CurrentSubsite())
-                $filter['SubsiteID'] = $this->owner->CurrentSubsite()->ID;
-
             if($menu = CustomMenuHolder::get()->filter($filter)->first()) {
 
                 // If a custom order is set, use it

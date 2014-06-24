@@ -10,5 +10,14 @@ class CustomMenuHolder_SubsiteExtension extends DataExtension {
         'Subsite' => 'Subsite'
     );
 
-    public function updateCMSFields(FieldList $fields) {}
+    public function updateCMSFields(FieldList $fields) {
+        $fields->addFieldToTab(
+            "Root.Main",
+            HiddenField::create(
+                'SubsiteID',
+                'SubsiteID',
+                Subsite::currentSubsiteID()
+            )
+        );
+    }
 }
