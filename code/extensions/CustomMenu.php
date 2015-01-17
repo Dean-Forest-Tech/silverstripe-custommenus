@@ -2,6 +2,14 @@
 class CustomMenu extends Extension {
 
     /**
+     * Define constructor otherwise PHP will fall back to calling the function
+     * named after the class which throws an error on inital setup
+     */
+    function __construct() {
+        parent::__construct();
+    }
+
+    /**
      * Generate an list of items that will be loaded into the custom menu
      *
      * @param $menu template slug for retriving a menu
