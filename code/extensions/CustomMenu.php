@@ -1,4 +1,5 @@
 <?php
+
 class CustomMenu extends Extension {
 
     /**
