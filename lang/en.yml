@@ -1,0 +1,16 @@
+en:
+  CustomMenuHolder:
+    PLURALNAME: 'Custom Menu Holders'
+    SINGULARNAME: 'Custom Menu Holder'
+  CustomMenus:
+    AddMenu: 'Add Menu'
+    FormMainSlug: 'Slug (used in your loop call)'
+    FormMainTitle: Title
+    FormOrderHeader: 'Order of Pages'
+    FormOrderOrder: 'Customise this order (list of page IDs, seperated by a comma)'
+    FormOrderOrderList: 'This is how your menu is currently ordered'
+    FormPagesHeader: 'Pages in this Menu'
+    FormPagesPages: 'Select pages'
+    FormSettingsHeader: 'Menu Settings'
+  CustomMenuAdmin:
+    MENUTITLE: Menus

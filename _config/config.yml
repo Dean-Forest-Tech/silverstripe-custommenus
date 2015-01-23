@@ -1,0 +1,12 @@
+---
+name: custommenus
+---
+Controller:
+  extensions:
+    - 'CustomMenu'
+SiteTree:
+  extensions:
+    - 'CustomMenuExtension'
+LeftAndMain:
+  extensions:
+    - 'CustomMenu_LeftAndMain'
