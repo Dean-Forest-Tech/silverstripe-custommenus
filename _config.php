@@ -1,6 +1,6 @@
 <?php
-// Add custom menu controller to ContentController
-ContentController::add_extension('CustomMenu');
+// Add custom menu controller to Controller
+Controller::add_extension('CustomMenu');
 SiteTree::add_extension('CustomMenuExtension');
 LeftAndMain::add_extension('CustomMenu_LeftAndMain');
 
