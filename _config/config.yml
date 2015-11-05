@@ -10,3 +10,12 @@ SiteTree:
 LeftAndMain:
   extensions:
     - 'CustomMenu_LeftAndMain'
+
+---
+Name: translatablecustommenu
+Only:
+  ModuleExists: translatable
+---
+Injector:
+  CustomMenu:
+    class: TranslatableCustomMenu
