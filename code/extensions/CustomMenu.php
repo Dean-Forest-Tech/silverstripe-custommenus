@@ -49,6 +49,7 @@ class CustomMenu extends Extension {
                 }
             }
         }
+        
 
         return $menu_items;
     }
