@@ -1,5 +1,5 @@
 {
-  "name": "i-lateral/silverstripe-custommenus",
+  "name": "henrypenny/silverstripe-custommenus",
   "description": "A Silverstripe module allowing you to create custom menus that can be gernated in the front end of your site.",
 	"type": "silverstripe-module",
 	"homepage": "http://github.com/i-lateral/silverstripe-custommenus",
