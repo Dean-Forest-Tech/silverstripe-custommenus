@@ -6,7 +6,8 @@
  *
  */
 
-class CustomMenuAdmin extends ModelAdmin {
+class CustomMenuAdmin extends ModelAdmin
+{
     public static $url_segment = 'menus';
     public static $menu_title = 'Menus';
     public static $menu_priority = 10;
@@ -14,15 +15,17 @@ class CustomMenuAdmin extends ModelAdmin {
 
     public $showImportForm = false;
 
-    public function init() {
+    public function init()
+    {
         parent::init();
     }
 
-    public function getEditForm($id = null, $fields = null) {
+    public function getEditForm($id = null, $fields = null)
+    {
         $form = parent::getEditForm($id, $fields);
         $fields = $form->Fields();
 
-        if($this->modelClass == 'CustomMenuHolder') {
+        if ($this->modelClass == 'CustomMenuHolder') {
             $gridField = $fields->fieldByName('CustomMenuHolder');
 
             // Tidy up category config and remove default add button
@@ -33,15 +36,15 @@ class CustomMenuAdmin extends ModelAdmin {
                 ->removeComponentsByType('GridFieldAddNewButton');
 
             // Add creation button if member has create permissions
-            if(Permission::check('ADMIN') || Permission::check('MENU_CREATE')) {
+            if (Permission::check('ADMIN') || Permission::check('MENU_CREATE')) {
                 $add_button = new GridFieldAddNewButton('toolbar-header-left');
-                $add_button->setButtonName(_t('CustomMenus.AddMenu','Add Menu'));
+                $add_button->setButtonName(_t('CustomMenus.AddMenu', 'Add Menu'));
 
                 $field_config->addComponent($add_button);
             }
 
             // Update list of items for subsite (if used)
-            if(class_exists('Subsite')) {
+            if (class_exists('Subsite')) {
                 $list = $gridField
                     ->getList()
                     ->filter(array(
