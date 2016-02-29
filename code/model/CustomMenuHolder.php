@@ -9,22 +9,22 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
     public static $many_many = array(
         'Pages'	=> 'SiteTree'
     );
-    
+
     public static $summary_fields = array(
         'Title' => 'Title',
         'Slug'  => 'Slug'
     );
-	
+
 	public static $searchable_fields = array(
 		'Title'
 	);
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        
+
         $fields->removeByName('Pages');
         $fields->removeByName('SubsiteID');
-        
+
         if(!$this->ID) {
             $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
             $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your control call)')));
@@ -33,31 +33,31 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
             $fields->addFieldToTab('Root.Main', new HeaderField('MenuSettings',_t('CustomMenus.FormSettingsHeader','Menu Settings')));
             $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
             $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your loop call)')));
-            
+
             $fields->addFieldToTab('Root.Main', new HeaderField('MenuPages',_t('CustomMenus.FormPagesHeader','Pages in this Menu')));
             $fields->addFieldToTab('Root.Main', new TreeMultiselectField('Pages',_t('CustomMenus.FormPagesPages','Select pages'), 'SiteTree'));
-            
+
             $fields->addFieldToTab('Root.Main', new HeaderField('MenuOrder',_t('CustomMenus.FormOrderHeader','Order of Pages')));
             $fields->addFieldToTab('Root.Main', new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')));
             $fields->addFieldToTab('Root.Main', new TextField('Order',_t('CustomMenus.FormOrderOrder','Customise this order (list of page IDs, seperated by a comma)')));
         }
-        
+
         $this->extend('updateCMSFields', $fields);
-        
+
         return $fields;
     }
-    
+
     public function populateDefaults() {
         parent::populateDefaults();
     }
-    
+
     public function onBeforeWrite() {
         parent::onBeforeWrite();
-        
+
         // If subsites enabled
         if(class_exists('Subsite') && $subsite = Subsite::currentSubsite())
             $this->SubsiteID = $subsite->ID;
-        
+
         // Ensure the slug is URL safe
         $this->Slug = ($this->Slug) ? Convert::raw2url($this->Slug) : Convert::raw2url($this->Title);
     }
@@ -106,7 +106,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
             }
         }
     }
-    
+
     /*   Permissions
      * -----------------------------------------------------------------------
      */
@@ -139,32 +139,32 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
         );
     }
 
-	
+
     public function canView($member = null) {
     	if(Permission::check('ADMIN') || Permission::check('MENU_VIEWALL'))
     		return true;
-		else 
+		else
 			return false;
     }
-    
+
     public function canCreate($member = null) {
     	if(Permission::check('ADMIN') || Permission::check('MENU_CREATE'))
     		return true;
-		else 
+		else
 			return false;
     }
-    
+
     public function canDelete($member = null) {
     	if(Permission::check('ADMIN') || Permission::check('MENU_DELETE'))
     		return true;
-		else 
+		else
 			return false;
     }
-    
+
     public function canEdit($member = null) {
     	if(Permission::check('ADMIN') || Permission::check('MENU_EDIT'))
 			return true;
-		else 
+		else
 			return false;
     }
 }
