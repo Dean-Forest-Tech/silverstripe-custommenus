@@ -35,7 +35,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
             $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your loop call)')));
             
             $fields->addFieldToTab('Root.Main', new HeaderField('MenuPages',_t('CustomMenus.FormPagesHeader','Pages in this Menu')));
-            $fields->addFieldToTab('Root.Main', new TreeMultiselectField('Pages',_t('CustomMenus.FormPagesPages','Select pages'), 'SiteTree'));
+            $fields->addFieldToTab('Root.Main', new TreeMultiselectField('Pages',_t('CustomMenus.FormPagesPages','Select pages'), 'SiteTree', "ID", "MenuTitle"));
             
             $fields->addFieldToTab('Root.Main', new HeaderField('MenuOrder',_t('CustomMenus.FormOrderHeader','Order of Pages')));
             $fields->addFieldToTab('Root.Main', new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')));

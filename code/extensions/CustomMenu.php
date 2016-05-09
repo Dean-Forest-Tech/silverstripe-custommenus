@@ -35,15 +35,21 @@ class CustomMenu extends Extension {
 
                 if(isset($order) && is_array($order) && count($order) > 0) {
                     foreach($order as $item) {
-                        $menu_items->push($menu->Pages()->find('ID',$item));
+                        $page = $menu->Pages()->find('ID', $item);
+                        if($page) {
+                            $menu_items->push($page);
+                        }
                     }
                 } else {
                     foreach($menu->Pages() as $item) {
-                        $menu_items->push($item);
+                        if($item) {
+                            $menu_items->push($item);
+                        }
                     }
                 }
             }
         }
+
 
         return $menu_items;
     }
