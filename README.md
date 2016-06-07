@@ -7,7 +7,7 @@ Developed and maintained by [i-lateral](http://www.i-lateral.com)
 
 Requirements
 ------------
-SilverStripe 3.1 or greater.
+SilverStripe 3.3 or greater.
 
 
 Installation Instructions
