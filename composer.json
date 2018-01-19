@@ -3,7 +3,12 @@
   "description": "A Silverstripe module allowing you to create custom menus that can be gernated in the front end of your site.",
 	"type": "silverstripe-module",
 	"homepage": "http://github.com/i-lateral/silverstripe-custommenus",
-	"keywords": ["silverstripe", "nav", "menus", "navigation"],
+	"keywords": [
+		"silverstripe",
+		"nav",
+		"menus",
+		"navigation"
+	],
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
@@ -16,7 +21,8 @@
 	},
 	"require": {
 		"silverstripe/framework": ">=3.3",
-		"silverstripe/cms": ">=3.3"
+		"silverstripe/siteconfig": ">=3.3",
+        "symbiote/silverstripe-gridfieldextensions": "~2.0"
 	},
 	"extra": {
 		"installer-name": "custommenus"
