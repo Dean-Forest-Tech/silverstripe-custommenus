@@ -12,7 +12,6 @@ use SilverStripe\ORM\DB;
 use SilverStripe\Core\Convert;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use ilateral\SilverStripe\CustomMenus\Tasks\CustomMenusMigrationTask;
-use CustomMenuLink;
 
 /**
  * A container of menu links that can then be rendered into a template
@@ -22,6 +21,9 @@ use CustomMenuLink;
  */
 class CustomMenuHolder extends DataObject implements PermissionProvider
 {
+
+    private static $table_name = 'CustomMenuHolder';
+    
     private static $db = [
         'Title'	=> 'Varchar',
         'Slug'	=> 'Varchar',
@@ -199,7 +201,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
         }
     }
     
-    public function canCreate($member = null) {
+    public function canCreate($member = null, $context = []) {
     	if (Permission::check(['ADMIN','MENU_CREATE'])) {
             return true;
         } else { 

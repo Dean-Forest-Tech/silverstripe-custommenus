@@ -1,20 +1,20 @@
 ---
 name: custommenus
 ---
-Controller:
+SilverStripe\Control\Controller:
   extensions:
-    - 'CustomMenu'
-SiteTree:
+    - 'ilateral\SilverStripe\CustomMenus\Extensions\ControllerExtension'
+SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - 'CustomMenuExtension'
-SiteConfig:
+    - 'ilateral\SilverStripe\CustomMenus\Extensions\CustomMenuExtension'
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - 'CustomMenuSiteConfigExtension'
+    - 'ilateral\SilverStripe\CustomMenus\Extensions\SiteConfigExtension'
 
 ---
 Only:
-  moduleexists: 'cms'
+  moduleexists: 'silverstripe/cms'
 ---
-CustomMenuLink:
+ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
   base_classes:
-    "SiteTree": "Page on site"
+    '\SilverStripe\CMS\Model\SiteTree': "Page on site"

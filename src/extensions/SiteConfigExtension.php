@@ -16,7 +16,7 @@ use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
  *
  * @author Mo <morven@ilateral.co.uk>
  */
-class CustomMenuSiteConfigExtension extends DataExtension
+class SiteConfigExtension extends DataExtension
 {
     
     private static $has_many = [
@@ -25,6 +25,8 @@ class CustomMenuSiteConfigExtension extends DataExtension
 
     public function updateCMSFields(FieldList $fields)
     {
+        $fields->removeByName("Menus");
+        
         $fields->addFieldToTab(
             "Root.Menus",
             GridField::create(

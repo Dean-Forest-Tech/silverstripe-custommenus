@@ -7,7 +7,6 @@ use SilverStripe\Forms\DropdownField;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Security\Permission;
 use NathanCox\HasOneAutocompleteField\Forms\HasOneAutocompleteField;
-use CustomMenuHolder;
 
 /**
  * Single link that will appear in this menu. This link can be
@@ -29,6 +28,8 @@ use CustomMenuHolder;
 class CustomMenuLink extends DataObject
 {
 
+    private static $table_name = 'CustomMenuLink';
+
     /**
      * Possible object classes that can be related to
      * this object
@@ -38,7 +39,7 @@ class CustomMenuLink extends DataObject
     private static $base_classes = [];
 
     private static $db = [
-        'BaseClass'	=> 'VarChar',
+        'BaseClass'	=> 'Varchar(255)',
         'ObjectID'	=> 'Int',
         'SortOrder'	=> 'Int'
     ];
@@ -105,7 +106,7 @@ class CustomMenuLink extends DataObject
      */
     public function Object()
     {
-        $id = $this->ObjectID;
+        $id = (int)$this->ObjectID;
         $class = $this->BaseClass;
 
         if ($class && is_int($id)) {
@@ -131,7 +132,7 @@ class CustomMenuLink extends DataObject
     	return true;
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
     	if (Permission::check(['ADMIN','MENU_CREATE'])) {
     		return true;
