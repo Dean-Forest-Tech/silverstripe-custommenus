@@ -1,5 +1,14 @@
 <?php
 
+namespace ilateral\SilverStripe\CustomMenus\Model;
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Security\Permission;
+use NathanCox\HasOneAutocompleteField\Forms\HasOneAutocompleteField;
+use CustomMenuHolder;
+
 /**
  * Single link that will appear in this menu. This link can be
  * associated with any generic data object, as long as the object
@@ -35,7 +44,7 @@ class CustomMenuLink extends DataObject
     ];
 
     private static $has_one = [
-        'Menu'	=> 'CustomMenuHolder'
+        'Menu'	=> CustomMenuHolder::class
     ];
 
     private static $default_sort = [

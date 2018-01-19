@@ -1,5 +1,19 @@
 <?php
 
+namespace ilateral\SilverStripe\CustomMenus\Model;
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Security\PermissionProvider;
+use SilverStripe\Security\Permission;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\ORM\Connect\Database;
+use SilverStripe\ORM\DB;
+use SilverStripe\Core\Convert;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use ilateral\SilverStripe\CustomMenus\Tasks\CustomMenusMigrationTask;
+use CustomMenuLink;
+
 /**
  * A container of menu links that can then be rendered into a template
  * 
@@ -15,15 +29,15 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     ];
 
     private static $has_one = [
-        'Site' => "SiteConfig"
+        'Site' => SiteConfig::class
     ];
 
     private static $has_many = [
-        "Links" => "CustomMenuLink"
+        "Links" => CustomMenuLink::class
     ];
 
     private static $many_many = [
-        'Pages'	=> 'SiteTree'
+        'Pages'	=> SiteTree::class
     ];
     
     private static $summary_fields = [
@@ -115,7 +129,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
         // Run migration task (if needed)
         $migrate = CustomMenusMigrationTask::config()->run_during_dev_build;
 
-        if ($migrate && class_exists("SiteTree")) {
+        if ($migrate && class_exists(SiteTree::class)) {
             $task = new CustomMenusMigrationTask();
             $task->up();
         }

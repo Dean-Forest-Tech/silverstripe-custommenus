@@ -1,5 +1,16 @@
 <?php
 
+namespace ilateral\SilverStripe\CustomMenus\Tasks;
+
+use SilverStripe\Dev\MigrationTask;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\ORM\DatabaseAdmin;
+use SilverStripe\ORM\DB;
+use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink;
+
 class CustomMenusMigrationTask extends MigrationTask
 {
 	protected $title = "Migration of CustomMenu assotiated pages";
@@ -27,7 +38,7 @@ class CustomMenusMigrationTask extends MigrationTask
         foreach ($menus as $menu) {
             foreach ($menu->Pages() as $page) {
                 $link = CustomMenuLink::create([
-                    "BaseClass" => "SiteTree",
+                    "BaseClass" => SiteTree::class,
                     "ObjectID" => $page->ID,
                     "MenuID" => $menu->ID
                 ]);
