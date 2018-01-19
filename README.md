@@ -40,7 +40,7 @@ template you can either:
 
 ### Use the bundled template
 
-Adding **$RenderCustomMenu(menu-slug)** to your template code make
+Adding **$RenderedCustomMenu(menu-slug)** to your template code make
 use of the CustomMenu.ss include to render a UL (with a unique class name).
 
 You can also overload this template in your own theme to generate
