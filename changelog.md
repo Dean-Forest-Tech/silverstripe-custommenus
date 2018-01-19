@@ -15,3 +15,7 @@ The following is a log of changes for the Custom Menus module
 * New interface for managing menus (via siteconfig)
 * Add ability to link to generic DataObjects (rather than just pages)
 * Add re-ordering via GridFieldOrderableRows
+
+## 2.0.0
+
+* Add SS4 compatibility
