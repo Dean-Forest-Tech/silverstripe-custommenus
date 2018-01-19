@@ -1,7 +1,7 @@
 {
   "name": "i-lateral/silverstripe-custommenus",
   "description": "A Silverstripe module allowing you to create custom menus that can be gernated in the front end of your site.",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"homepage": "http://github.com/i-lateral/silverstripe-custommenus",
 	"keywords": [
 		"silverstripe",
@@ -20,12 +20,14 @@
 		"issues": "http://github.com/i-lateral/silverstripe-custommenus/issues"
 	},
 	"require": {
-		"silverstripe/framework": ">=3.3",
-		"silverstripe/siteconfig": ">=3.3",
-		"symbiote/silverstripe-gridfieldextensions": "~2.0",
-		"nathancox/hasoneautocompletefield": "~1.0"
+		"silverstripe/framework": "~4.0",
+		"silverstripe/siteconfig": "~4.0",
+		"symbiote/silverstripe-gridfieldextensions": "~3.1",
+		"nathancox/hasoneautocompletefield": "~2.0"
 	},
-	"extra": {
-		"installer-name": "custommenus"
-	}
+    "autoload": {
+        "psr-4": {
+            "ilateral\\SilverStripe\\CustomMenus\\": "src/"
+        }
+    }
 }
