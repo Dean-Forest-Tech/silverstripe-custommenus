@@ -22,7 +22,8 @@
 	"require": {
 		"silverstripe/framework": ">=3.3",
 		"silverstripe/siteconfig": ">=3.3",
-        "symbiote/silverstripe-gridfieldextensions": "~2.0"
+		"symbiote/silverstripe-gridfieldextensions": "~2.0",
+		"nathancox/hasoneautocompletefield": "~1.0"
 	},
 	"extra": {
 		"installer-name": "custommenus"
