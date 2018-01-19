@@ -63,18 +63,6 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
 
         return parent::getCMSFields();
     }
-    
-    public function onBeforeWrite()
-    {
-        parent::onBeforeWrite();
-        
-        // If subsites enabled
-        if(class_exists('Subsite') && $subsite = Subsite::currentSubsite())
-            $this->SubsiteID = $subsite->ID;
-        
-        // Ensure the slug is URL safe
-        $this->Slug = ($this->Slug) ? Convert::raw2url($this->Slug) : Convert::raw2url($this->Title);
-    }
 
     /**
     * Create default menu items if no items exist
@@ -123,6 +111,14 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
                 }
             }
         }
+
+        // Run migration task (if needed)
+        $migrate = CustomMenusMigrationTask::config()->run_during_dev_build;
+
+        if ($migrate && class_exists("SiteTree")) {
+            $task = new CustomMenusMigrationTask();
+            $task->up();
+        }
     }
 
     /**
@@ -160,6 +156,25 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
         ];
     }
 
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        
+        // Ensure the slug is URL safe
+        $this->Slug = ($this->Slug) ? Convert::raw2url($this->Slug) : Convert::raw2url($this->Title);
+    }
+        
+    /**
+     * Clean up after delete
+     */
+    public function onBeforeDelete()
+    {
+        parent::onBeforeDelete();
+        
+        foreach ($this->Links() as $link) {
+            $link->delete();
+        }
+    }
 	
     public function canView($member = null)
     {
