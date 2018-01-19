@@ -1,57 +1,71 @@
 <?php
-class CustomMenuHolder extends DataObject implements PermissionProvider {
-    public static $db = array(
-        'Title'	=> 'Text',
-        'Slug'	=> 'Text',
+
+/**
+ * A container of menu links that can then be rendered into a template
+ * 
+ * @author Mo <morven@ilateral.co.uk>
+ * @package CustomMenus
+ */
+class CustomMenuHolder extends DataObject implements PermissionProvider
+{
+    private static $db = [
+        'Title'	=> 'Varchar',
+        'Slug'	=> 'Varchar',
         'Order'	=> 'Text',
-    );
+    ];
 
-    public static $many_many = array(
+    private static $has_one = [
+        'Site' => "SiteConfig"
+    ];
+
+    private static $has_many = [
+        "Links" => "CustomMenuLink"
+    ];
+
+    private static $many_many = [
         'Pages'	=> 'SiteTree'
-    );
+    ];
     
-    public static $summary_fields = array(
+    private static $summary_fields = [
         'Title' => 'Title',
-        'Slug'  => 'Slug'
-    );
+        'Slug'  => 'Slug',
+        "Links.Count" => "# Links"
+    ];
 	
-	public static $searchable_fields = array(
+	private static $searchable_fields = [
 		'Title'
-	);
+    ];
 
-    public function getCMSFields() {
-        $fields = parent::getCMSFields();
+    public function getCMSFields()
+    {
+        $this->beforeUpdateCMSFields(function ($fields) {
+            if (!$this->canEdit()) {
+                return;
+            }
         
-        $fields->removeByName('Pages');
-        $fields->removeByName('SubsiteID');
-        
-        if(!$this->ID) {
-            $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
-            $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your control call)')));
+            $fields->removeByName('Pages');
             $fields->removeByName('Order');
-        } else {
-            $fields->addFieldToTab('Root.Main', new HeaderField('MenuSettings',_t('CustomMenus.FormSettingsHeader','Menu Settings')));
-            $fields->addFieldToTab('Root.Main', new TextField('Title', _t('CustomMenus.FormMainTitle','Title')));
-            $fields->addFieldToTab('Root.Main', new TextField('Slug', _t('CustomMenus.FormMainSlug','Slug (used in your loop call)')));
-            
-            $fields->addFieldToTab('Root.Main', new HeaderField('MenuPages',_t('CustomMenus.FormPagesHeader','Pages in this Menu')));
-            $fields->addFieldToTab('Root.Main', new TreeMultiselectField('Pages',_t('CustomMenus.FormPagesPages','Select pages'), 'SiteTree', "ID", "MenuTitle"));
-            
-            $fields->addFieldToTab('Root.Main', new HeaderField('MenuOrder',_t('CustomMenus.FormOrderHeader','Order of Pages')));
-            $fields->addFieldToTab('Root.Main', new CustomMenuOrderField('OrderList',_t('CustomMenus.FormOrderOrderList','This is how your menu is currently ordered')));
-            $fields->addFieldToTab('Root.Main', new TextField('Order',_t('CustomMenus.FormOrderOrder','Customise this order (list of page IDs, seperated by a comma)')));
-        }
-        
-        $this->extend('updateCMSFields', $fields);
-        
-        return $fields;
+
+            $slug_field = $fields->dataFieldByName("Slug");
+            $slug_field->setDescription(_t(
+                "CustomMenus.SlugDescription",
+                "Call this in your templates"
+            ));
+
+            $links_field = $fields->dataFieldByName("Links");
+
+            if ($links_field) {
+                $links_field
+                    ->getConfig()
+                    ->addComponent(new GridFieldOrderableRows('SortOrder'));
+            }
+        });
+
+        return parent::getCMSFields();
     }
     
-    public function populateDefaults() {
-        parent::populateDefaults();
-    }
-    
-    public function onBeforeWrite() {
+    public function onBeforeWrite()
+    {
         parent::onBeforeWrite();
         
         // If subsites enabled
@@ -68,103 +82,115 @@ class CustomMenuHolder extends DataObject implements PermissionProvider {
     * @see sapphire/core/model/DataObject#requireDefaultRecords()
     */
 
-    function requireDefaultRecords() {
+    function requireDefaultRecords()
+    {
         parent::requireDefaultRecords();
 
         // Main Menu
-        if($this->class == 'CustomMenuHolder') {
+        if ($this->class == 'CustomMenuHolder') {
             if(!DataObject::get_one($this->class)) {
                 $menu = new CustomMenuHolder();
                 $menu->Title = 'Main Menu';
                 $menu->Slug = "main-menu";
                 $menu->write();
                 $menu->flushCache();
-                if(method_exists('Database','alteration_message'))
+                if (method_exists('Database','alteration_message')) {
                     Database::alteration_message("Main menu created","created");
-                else
+                } else {
                     DB::alteration_message("Main menu created","created");
+                }
 
                 $menu = new CustomMenuHolder();
                 $menu->Title = 'Header Menu';
                 $menu->Slug = "header-menu";
                 $menu->write();
                 $menu->flushCache();
-                if(method_exists('Database','alteration_message'))
+                if (method_exists('Database','alteration_message')) {
                     Database::alteration_message("Header menu created","created");
-                else
+                } else {
                     DB::alteration_message("Header menu created","created");
+                }
 
                 $menu = new CustomMenuHolder();
                 $menu->Title = 'Footer Menu';
                 $menu->Slug = "footer-menu";
                 $menu->write();
                 $menu->flushCache();
-                if(method_exists('Database','alteration_message'))
+                if (method_exists('Database','alteration_message')) {
                     Database::alteration_message("Footer menu created","created");
-                else
+                } else {
                     DB::alteration_message("Footer menu created","created");
+                }
             }
         }
     }
-    
-    /*   Permissions
-     * -----------------------------------------------------------------------
+
+    /**
+     * Setup permissions
+     *
+     * @return void
      */
-    public function providePermissions() {
-        return array(
-            'MENU_VIEWALL' => array(
+    public function providePermissions()
+    {
+        return [
+            'MENU_VIEWALL' => [
                 'name' => 'View all menus',
                 'help' => 'Allow viewing of all menus in the "Menus" section',
                 'category' => 'Menus',
                 'sort' => 100
-            ),
-            'MENU_CREATE' => array(
+            ],
+            'MENU_CREATE' => [
                 'name' => 'Create menus',
                 'help' => 'Allow creation of menus in the "Menus" section',
                 'category' => 'Menus',
                 'sort' => 110
-            ),
-            'MENU_DELETE' => array(
+            ],
+            'MENU_DELETE' => [
                 'name' => 'Delete menus',
                 'help' => 'Allow deleting of menus in the "Menus" section',
                 'category' => 'Menus',
                 'sort' => 120
-            ),
-            'MENU_EDIT' => array(
+            ],
+            'MENU_EDIT' => [
                 'name' => 'Edit menus',
                 'help' => 'Allow editing of menus in the "Menu" section',
                 'category' => 'Menus',
                 'sort' => 130
-            ),
-        );
+            ],
+        ];
     }
 
 	
-    public function canView($member = null) {
-    	if(Permission::check('ADMIN') || Permission::check('MENU_VIEWALL'))
+    public function canView($member = null)
+    {
+    	if (Permission::check(['ADMIN','MENU_VIEWALL'])) {
     		return true;
-		else 
-			return false;
+        } else {
+            return false;
+        }
     }
     
     public function canCreate($member = null) {
-    	if(Permission::check('ADMIN') || Permission::check('MENU_CREATE'))
-    		return true;
-		else 
-			return false;
+    	if (Permission::check(['ADMIN','MENU_CREATE'])) {
+            return true;
+        } else { 
+            return false;
+        }
     }
     
     public function canDelete($member = null) {
-    	if(Permission::check('ADMIN') || Permission::check('MENU_DELETE'))
+    	if (Permission::check(['ADMIN','MENU_DELETE'])) {
     		return true;
-		else 
-			return false;
+        } else { 
+            return false;
+        }
     }
     
     public function canEdit($member = null) {
-    	if(Permission::check('ADMIN') || Permission::check('MENU_EDIT'))
+    	if (Permission::check(['ADMIN','MENU_EDIT'])) {
 			return true;
-		else 
-			return false;
+        } else { 
+            return false;
+        }
     }
 }

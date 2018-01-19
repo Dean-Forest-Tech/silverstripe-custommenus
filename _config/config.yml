@@ -11,3 +11,10 @@ SiteConfig:
   extensions:
     - 'CustomMenuSiteConfigExtension'
 
+---
+Only:
+  moduleexists: 'cms'
+---
+CustomMenuLink:
+  base_classes:
+    "SiteTree": "Page on site"
