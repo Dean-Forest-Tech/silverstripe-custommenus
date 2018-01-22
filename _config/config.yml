@@ -18,3 +18,11 @@ Only:
 CustomMenuLink:
   base_classes:
     "SiteTree": "Page on site"
+    - 'CustomMenu_LeftAndMain'
+---
+Only:
+  ModuleExists: translatable
+---
+Injector:
+  CustomMenu:
+    class: TranslatableCustomMenu
