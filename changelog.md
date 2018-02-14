@@ -16,6 +16,18 @@ The following is a log of changes for the Custom Menus module
 * Add ability to link to generic DataObjects (rather than just pages)
 * Add re-ordering via GridFieldOrderableRows
 
+## 1.3.0
+
+* Add translatable support
+
+## 1.3.1
+
+* Minor README updates
+
 ## 2.0.0
 
 * Add SS4 compatibility
+
+## 2.1.0
+
+* Merge in translatable code

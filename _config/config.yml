@@ -17,4 +17,11 @@ Only:
 ---
 ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
   base_classes:
-    '\SilverStripe\CMS\Model\SiteTree': "Page on site"
+    'SilverStripe\CMS\Model\SiteTree': "Page on site"
+---
+Only:
+  ModuleExists: 'silverstripe/translatable'
+---
+SilverStripe\Core\Injector\Injector:
+  ilateral\SilverStripe\CustomMenus\Extensions\ControllerExtension:
+    class: ilateral\SilverStripe\CustomMenus\Extensions\TranslatableControllerExtension

@@ -87,3 +87,6 @@ can do that by adding it (and a description) to your config.yml:
       base_classes:
         "SiteTree": "Page on site"
         "Product": "A Product"
+
+**NOTE** You MUST ensure that any data object you want to add
+to a menu has a defined `searchable_fields` config variable.
