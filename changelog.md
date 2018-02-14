@@ -19,3 +19,7 @@ The following is a log of changes for the Custom Menus module
 ## 1.3.0
 
 * Add translatable support
+
+## 1.3.1
+
+* Minor README updates
