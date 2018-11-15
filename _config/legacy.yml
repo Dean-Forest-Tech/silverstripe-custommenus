@@ -1,0 +1,7 @@
+---
+Name: custommenuslegacy
+---
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    CustomMenuHolder: ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder
+    CustomMenuLink: ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink

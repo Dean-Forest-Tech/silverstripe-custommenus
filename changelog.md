@@ -35,3 +35,7 @@ The following is a log of changes for the Custom Menus module
 ## 2.1.1
 
 * Fix duplicate translatable class error
+
+## 2.1.2
+
+* Added legacy.yml
