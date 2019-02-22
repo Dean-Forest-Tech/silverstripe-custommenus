@@ -1,0 +1,12 @@
+ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemOne:
+  itemone:
+    Title: 'Item One Test'
+ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemTwo:
+  itemtwo:
+    Title: 'Item Two Test'
+    MenuTitle: 'Item Two Menu'
+ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
+  linkone:
+    BaseClass: 'ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemOne'
+  linktwo:
+    BaseClass: 'ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemTwo'

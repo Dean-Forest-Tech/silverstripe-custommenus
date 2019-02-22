@@ -27,7 +27,8 @@
 	},
     "autoload": {
         "psr-4": {
-            "ilateral\\SilverStripe\\CustomMenus\\": "src/"
+            "ilateral\\SilverStripe\\CustomMenus\\": "src/",
+            "ilateral\\SilverStripe\\CustomMenus\\Tests\\": "tests/"
         }
     }
 }
