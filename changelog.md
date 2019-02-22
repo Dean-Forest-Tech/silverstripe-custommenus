@@ -39,3 +39,8 @@ The following is a log of changes for the Custom Menus module
 ## 2.1.2
 
 * Added legacy.yml
+
+## 2.1.3
+
+* Add searchable fields to `CustomMenuLink` (for SS 4.3 support)
+* Add ability to select the searchable field label when linking to an object
