@@ -62,6 +62,10 @@ class CustomMenuLink extends DataObject
         'ObjectID'
     ];
 
+    private static $searchable_fields = [
+        'Title'
+    ];
+
     public function getCMSFields()
     {
         $this->beforeUpdateCMSFields(function ($fields) {
