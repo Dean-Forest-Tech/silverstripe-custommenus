@@ -1,5 +1,8 @@
 # Custom Menus
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/badges/quality-score.png?b=2)](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/?branch=2)
+[![Build Status](https://travis-ci.org/i-lateral/silverstripe-custommenus.svg?branch=2)](https://travis-ci.org/i-lateral/silverstripe-custommenus)
+
 A module to allow the creation of customised menus for your
 SilverStripe site/App via SiteConfig.
 
@@ -90,3 +93,21 @@ can do that by adding it (and a description) to your config.yml:
 
 **NOTE** You MUST ensure that any data object you want to add
 to a menu has a defined `searchable_fields` config variable.
+
+### Customising assotiations
+
+Sometimes using the default fields for an object can cause issues
+(maybe you want to search only MenuTitle for a page, for example).
+
+You can customise how your linked classes are loaded via the following
+additional config:
+
+    CustomMenuLink:
+      base_classes:
+        'SilverStripe\CMS\Model\SiteTree':
+          Title: 'A Page' # Name for this object in the CMS
+          Label: 'Title' # The title field used when displaying t he assotiation in the CMS
+          SearchFields: # Fields used to search for an assotiated object
+            - Title
+            - URLSegment
+            - StockID
