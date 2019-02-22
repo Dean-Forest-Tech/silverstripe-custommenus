@@ -30,5 +30,9 @@
             "ilateral\\SilverStripe\\CustomMenus\\": "src/",
             "ilateral\\SilverStripe\\CustomMenus\\Tests\\": "tests/"
         }
-    }
+    },
+    "scripts": {
+        "lint": "phpcs -s src/ tests/",
+        "lint-clean": "phpcbf src/ tests/"
+	}
 }
