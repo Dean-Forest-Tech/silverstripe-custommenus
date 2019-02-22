@@ -13,7 +13,7 @@ use ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink;
 
 class CustomMenusMigrationTask extends MigrationTask
 {
-	protected $title = "Migration of CustomMenu assotiated pages";
+    protected $title = "Migration of CustomMenu assotiated pages";
     
     protected $description = "Migrate pages associated with a CustomMenu holder to the new CustomMenuHolderLink";
 
@@ -72,7 +72,7 @@ class CustomMenusMigrationTask extends MigrationTask
         if (Controller::curr() instanceof DatabaseAdmin) {
             DB::alteration_message($text, 'obsolete');
         } else {
-            if(Director::is_cli()) {
+            if (Director::is_cli()) {
                 echo $text . "\n";
             } else {
                 echo $text . "<br/>";

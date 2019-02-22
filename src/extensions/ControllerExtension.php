@@ -22,7 +22,7 @@ class ControllerExtension extends Extension
         $menu_items = ArrayList::create();
         $config = SiteConfig::current_site_config();
 
-        if(isset($menu)) {
+        if (isset($menu)) {
             // Ensure argument is safe for database
             $menu = Convert::raw2sql($menu);
 
@@ -32,10 +32,10 @@ class ControllerExtension extends Extension
                     'Slug' => $menu
                 ])->first();
 
-            if($menu_holder && $menu_holder->Links()->exists()) {
-                foreach($menu_holder->Links() as $link) {
+            if ($menu_holder && $menu_holder->Links()->exists()) {
+                foreach ($menu_holder->Links() as $link) {
                     $object = $link->Object();
-                    if ($object->exists()) { 
+                    if ($object->exists()) {
                         $menu_items->add($object);
                     }
                 }

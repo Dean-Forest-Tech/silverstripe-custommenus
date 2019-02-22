@@ -15,7 +15,7 @@ use ilateral\SilverStripe\CustomMenus\Tasks\CustomMenusMigrationTask;
 
 /**
  * A container of menu links that can then be rendered into a template
- * 
+ *
  * @author Mo <morven@ilateral.co.uk>
  * @package CustomMenus
  */
@@ -25,9 +25,9 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     private static $table_name = 'CustomMenuHolder';
     
     private static $db = [
-        'Title'	=> 'Varchar',
-        'Slug'	=> 'Varchar',
-        'Order'	=> 'Text',
+        'Title' => 'Varchar',
+        'Slug'  => 'Varchar',
+        'Order' => 'Text',
     ];
 
     private static $has_one = [
@@ -39,7 +39,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     ];
 
     private static $many_many = [
-        'Pages'	=> SiteTree::class
+        'Pages' => SiteTree::class
     ];
     
     private static $summary_fields = [
@@ -47,9 +47,9 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
         'Slug'  => 'Slug',
         "Links.Count" => "# Links"
     ];
-	
-	private static $searchable_fields = [
-		'Title'
+    
+    private static $searchable_fields = [
+        'Title'
     ];
 
     public function getCMSFields()
@@ -92,16 +92,16 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
 
         // Main Menu
         if ($this->class == 'CustomMenuHolder') {
-            if(!DataObject::get_one($this->class)) {
+            if (!DataObject::get_one($this->class)) {
                 $menu = new CustomMenuHolder();
                 $menu->Title = 'Main Menu';
                 $menu->Slug = "main-menu";
                 $menu->write();
                 $menu->flushCache();
-                if (method_exists('Database','alteration_message')) {
-                    Database::alteration_message("Main menu created","created");
+                if (method_exists('Database', 'alteration_message')) {
+                    Database::alteration_message("Main menu created", "created");
                 } else {
-                    DB::alteration_message("Main menu created","created");
+                    DB::alteration_message("Main menu created", "created");
                 }
 
                 $menu = new CustomMenuHolder();
@@ -109,10 +109,10 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
                 $menu->Slug = "header-menu";
                 $menu->write();
                 $menu->flushCache();
-                if (method_exists('Database','alteration_message')) {
-                    Database::alteration_message("Header menu created","created");
+                if (method_exists('Database', 'alteration_message')) {
+                    Database::alteration_message("Header menu created", "created");
                 } else {
-                    DB::alteration_message("Header menu created","created");
+                    DB::alteration_message("Header menu created", "created");
                 }
 
                 $menu = new CustomMenuHolder();
@@ -120,10 +120,10 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
                 $menu->Slug = "footer-menu";
                 $menu->write();
                 $menu->flushCache();
-                if (method_exists('Database','alteration_message')) {
-                    Database::alteration_message("Footer menu created","created");
+                if (method_exists('Database', 'alteration_message')) {
+                    Database::alteration_message("Footer menu created", "created");
                 } else {
-                    DB::alteration_message("Footer menu created","created");
+                    DB::alteration_message("Footer menu created", "created");
                 }
             }
         }
@@ -191,36 +191,39 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
             $link->delete();
         }
     }
-	
+    
     public function canView($member = null)
     {
-    	if (Permission::check(['ADMIN','MENU_VIEWALL'])) {
-    		return true;
+        if (Permission::check(['ADMIN','MENU_VIEWALL'])) {
+            return true;
         } else {
             return false;
         }
     }
     
-    public function canCreate($member = null, $context = []) {
-    	if (Permission::check(['ADMIN','MENU_CREATE'])) {
+    public function canCreate($member = null, $context = [])
+    {
+        if (Permission::check(['ADMIN','MENU_CREATE'])) {
             return true;
-        } else { 
+        } else {
             return false;
         }
     }
     
-    public function canDelete($member = null) {
-    	if (Permission::check(['ADMIN','MENU_DELETE'])) {
-    		return true;
-        } else { 
+    public function canDelete($member = null)
+    {
+        if (Permission::check(['ADMIN','MENU_DELETE'])) {
+            return true;
+        } else {
             return false;
         }
     }
     
-    public function canEdit($member = null) {
-    	if (Permission::check(['ADMIN','MENU_EDIT'])) {
-			return true;
-        } else { 
+    public function canEdit($member = null)
+    {
+        if (Permission::check(['ADMIN','MENU_EDIT'])) {
+            return true;
+        } else {
             return false;
         }
     }

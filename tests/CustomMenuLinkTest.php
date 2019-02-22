@@ -81,7 +81,8 @@ class CustomMenuLinkTest extends SapphireTest
     }
 
     public function testGetTitle()
-    {        // Manually assign links to objects as this cannot be done through fixtures
+    {
+        // Manually assign links to objects as this cannot be done through fixtures
         $link_one = $this->objFromFixture(CustomMenuLink::class, 'linkone');
         $item_one = $this->objFromFixture(TestMenuItemOne::class, 'itemone');
         $item_one->write();

@@ -12,16 +12,16 @@ use NathanCox\HasOneAutocompleteField\Forms\HasOneAutocompleteField;
  * Single link that will appear in this menu. This link can be
  * associated with any generic data object, as long as the object
  * has the following methods/Properties
- * 
+ *
  * Methods:
  * - Link
  * - AbsoluteLink
  * - RelativeLink
- * 
+ *
  * Properties:
  * - Title
  * - MenuTitle
- * 
+ *
  * @author Mo <morven@ilateral.co.uk>
  * @package CustomMenus
  */
@@ -39,9 +39,9 @@ class CustomMenuLink extends DataObject
     /**
      * Possible object classes that can be related to
      * this object
-     * 
+     *
      * This can either be a simple list of ClassNames, EG:
-     * 
+     *
      * ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
      *   base_classes:
      *    'SilverStripe\CMS\Model\SiteTree': "Page on site"
@@ -49,7 +49,7 @@ class CustomMenuLink extends DataObject
      * OR, you can provide a multi-dimensional array of classes and specific
      * labels and search_fields (which allows you to customise how each class
      * is searched for). EG:
-     * 
+     *
      * ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
      *   base_classes:
      *    'SilverStripe\CMS\Model\SiteTree': "Page on site"
@@ -60,29 +60,29 @@ class CustomMenuLink extends DataObject
      *        - Label
      *        - URLSegment
      *        - StockID
-     * 
+     *
      * @var array
      */
     private static $base_classes = [];
 
     /**
      * The field used by the HasOneField to display the linked objects name.
-     * 
+     *
      * Changing this will allow you change which field is show when an object is linked
      * (EG: URLSegment, MenuTitle, etc).
-     * 
+     *
      * @var string
      */
     private static $default_label_field = "Title";
 
     private static $db = [
-        'BaseClass'	=> 'Varchar(255)',
-        'ObjectID'	=> 'Int',
-        'SortOrder'	=> 'Int'
+        'BaseClass' => 'Varchar(255)',
+        'ObjectID'  => 'Int',
+        'SortOrder' => 'Int'
     ];
 
     private static $has_one = [
-        'Menu'	=> CustomMenuHolder::class
+        'Menu'  => CustomMenuHolder::class
     ];
 
     private static $default_sort = [
@@ -106,7 +106,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get a list of all base classes that are multi dimensional in nature
-     * 
+     *
      * @return array
      */
     protected function getAssociativeClasses()
@@ -119,7 +119,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get a list of all base classes that are in a list of simple array values
-     * 
+     *
      * @return array
      */
     protected function getNonAssociativeClasses()
@@ -136,7 +136,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get a list of classes suitable for loading into a dropdown
-     * 
+     *
      * @return array
      */
     public function getClassesForDropdown()
@@ -163,7 +163,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * See if the configured classes have a custom label
-     * 
+     *
      * @return string
      */
     public function getLabelField()
@@ -189,7 +189,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get a list of search fields for the current class (if defined)
-     * 
+     *
      * @return array
      */
     public function getSearchFields()
@@ -279,7 +279,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get the configured title for the linked object
-     * 
+     *
      * @return string
      */
     public function getTitle()
@@ -290,7 +290,7 @@ class CustomMenuLink extends DataObject
 
     /**
      * Get the type of object linked to this menu item
-     * 
+     *
      * @return string
      */
     public function getType()
@@ -307,13 +307,13 @@ class CustomMenuLink extends DataObject
 
     public function canView($member = null)
     {
-    	return true;
+        return true;
     }
 
     public function canCreate($member = null, $context = [])
     {
-    	if (Permission::check(['ADMIN','MENU_CREATE'])) {
-    		return true;
+        if (Permission::check(['ADMIN','MENU_CREATE'])) {
+            return true;
         } else {
             return false;
         }
@@ -321,11 +321,11 @@ class CustomMenuLink extends DataObject
 
     public function canEdit($member = null)
     {
-    	return $this->Menu()->canEdit($member);
+        return $this->Menu()->canEdit($member);
     }
 
     public function canDelete($member = null)
     {
-    	return $this->Menu()->canDelete($member);
+        return $this->Menu()->canDelete($member);
     }
 }
