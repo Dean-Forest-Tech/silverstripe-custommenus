@@ -1,6 +1,7 @@
 # Custom Menus
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/badges/quality-score.png?b=2)](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/?branch=2)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/badges/code-intelligence.svg?b=2)](https://scrutinizer-ci.com/code-intelligence)
 [![Build Status](https://travis-ci.org/i-lateral/silverstripe-custommenus.svg?branch=2)](https://travis-ci.org/i-lateral/silverstripe-custommenus)
 
 A module to allow the creation of customised menus for your
