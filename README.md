@@ -37,31 +37,57 @@ You will then need to create a `MenuHolder` (or use one of the installed default
 Now edit the `MenuHolder` and set the BaseClass (this will usually default to `SiteTree`). Once you have done this **and saved** you will be able to associate this menu item with you Page/Object using
 the ObjectID field.
 
-## Tempaltes
+## Templates
 
 `CustomMenus` comes with two options for rendering menus into a
 template you can either:
 
 ### Use the bundled template
 
-Adding **$RenderedCustomMenu(menu-slug)** to your template code make
+Adding `$RenderedCustomMenu(menu-slug)` to your template code make
 use of the CustomMenu.ss include to render a UL (with a unique class name).
 
 You can also overload this template in your own theme to generate
 custom HTML for your navigation.
+
+You can also enable the Title of the menu in the template by calling:
+
+`$RenderedCustomMenu(menu-slug, true)`
 
 ### Loop through a list of menu items
 
 Alternativley you can generate your own template by adding the 
 following code:
 
-    <% if $CustomMenu(main-menu) %><ul class="menu">
-        <% loop $CustomMenu(main-menu) %>
-            <li class="$LinkingMode $FirstLast">
-                <a href="$Link">$MenuTitle</a>
-            </li>
-        <% end_loop %>
-    </ul><% end_if %>
+````
+    <% if $CustomMenu(main-menu) %><% with $CustomMenu(main-menu) >
+        <ul class="menu">
+            <% loop $Me %>
+                <li class="$LinkingMode $FirstLast">
+                    <a href="$Link">$MenuTitle</a>
+                </li>
+            <% end_loop %>
+        </ul>
+    <% end_with %><% end_if %>
+````
+
+### Access to the base `CustomMenuHolder`
+
+When rendering the menu into a template, you can access the base holder using
+the `$Holder` variable, from the example above you can use:
+
+````
+    <% if $CustomMenu(main-menu) %><% with $CustomMenu(main-menu) >
+        <h2>$Holder.Title</h2>
+        <ul class="menu">
+            <% loop $Me %>
+                <li class="$LinkingMode $FirstLast">
+                    <a href="$Link">$MenuTitle</a>
+                </li>
+            <% end_loop %>
+        </ul>
+    <% end_with %><% end_if %>
+````
 
 ## Linking to custom DataObjects
 

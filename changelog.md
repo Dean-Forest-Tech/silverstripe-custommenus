@@ -44,3 +44,8 @@ The following is a log of changes for the Custom Menus module
 
 * Add searchable fields to `CustomMenuLink` (for SS 4.3 support)
 * Add ability to select the searchable field label when linking to an object
+
+## 2.1.4
+
+* Add ability to access the base holder when rendering a menu
+* Add ability to render a menu link
