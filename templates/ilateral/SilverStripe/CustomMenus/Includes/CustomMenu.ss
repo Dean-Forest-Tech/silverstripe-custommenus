@@ -1,4 +1,5 @@
 <% if $Menu.Exists %>
+    <% if $ShowHeading %><h3 class="menu-{$Slug}-heading">{$Menu.Holder.Title}</h3><% end_if %>
     <ul class="menu-{$Slug}">
         <% loop $Menu %>
             <li class="menu-{$Slug}-item $LinkingMode $FirstLast">
