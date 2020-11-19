@@ -89,6 +89,8 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     function requireDefaultRecords()
     {
         parent::requireDefaultRecords();
+        $config = SiteConfig::current_site_config();
+        $menus = CustomMenuHolder::get();
 
         // Main Menu
         if ($this->class == 'CustomMenuHolder') {
@@ -128,6 +130,15 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
             }
         }
 
+        if (!$config->Menus()->exists()) {
+            foreach ($menus as $menu) {
+                $config->Menus()->add($menu);
+                DB::alteration_message('Re-Linked Custom Menu to SiteConfig', 'changed');
+            }
+            $config->write();
+        }
+
+            
         // Run migration task (if needed)
         $migrate = CustomMenusMigrationTask::config()->run_during_dev_build;
 
