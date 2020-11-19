@@ -89,53 +89,42 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     function requireDefaultRecords()
     {
         parent::requireDefaultRecords();
-        $config = SiteConfig::current_site_config();
         $menus = CustomMenuHolder::get();
 
         // Main Menu
-        if ($this->class == 'CustomMenuHolder') {
-            if (!DataObject::get_one($this->class)) {
-                $menu = new CustomMenuHolder();
-                $menu->Title = 'Main Menu';
-                $menu->Slug = "main-menu";
-                $menu->write();
-                $menu->flushCache();
-                if (method_exists('Database', 'alteration_message')) {
-                    Database::alteration_message("Main menu created", "created");
-                } else {
-                    DB::alteration_message("Main menu created", "created");
-                }
-
-                $menu = new CustomMenuHolder();
-                $menu->Title = 'Header Menu';
-                $menu->Slug = "header-menu";
-                $menu->write();
-                $menu->flushCache();
-                if (method_exists('Database', 'alteration_message')) {
-                    Database::alteration_message("Header menu created", "created");
-                } else {
-                    DB::alteration_message("Header menu created", "created");
-                }
-
-                $menu = new CustomMenuHolder();
-                $menu->Title = 'Footer Menu';
-                $menu->Slug = "footer-menu";
-                $menu->write();
-                $menu->flushCache();
-                if (method_exists('Database', 'alteration_message')) {
-                    Database::alteration_message("Footer menu created", "created");
-                } else {
-                    DB::alteration_message("Footer menu created", "created");
-                }
+        if (!DataObject::get_one($this->class)) {
+            $menu = new CustomMenuHolder();
+            $menu->Title = 'Main Menu';
+            $menu->Slug = "main-menu";
+            $menu->write();
+            $menu->flushCache();
+            if (method_exists('Database', 'alteration_message')) {
+                Database::alteration_message("Main menu created", "created");
+            } else {
+                DB::alteration_message("Main menu created", "created");
             }
-        }
 
-        if (!$config->Menus()->exists()) {
-            foreach ($menus as $menu) {
-                $config->Menus()->add($menu);
-                DB::alteration_message('Re-Linked Custom Menu to SiteConfig', 'changed');
+            $menu = new CustomMenuHolder();
+            $menu->Title = 'Header Menu';
+            $menu->Slug = "header-menu";
+            $menu->write();
+            $menu->flushCache();
+            if (method_exists('Database', 'alteration_message')) {
+                Database::alteration_message("Header menu created", "created");
+            } else {
+                DB::alteration_message("Header menu created", "created");
             }
-            $config->write();
+
+            $menu = new CustomMenuHolder();
+            $menu->Title = 'Footer Menu';
+            $menu->Slug = "footer-menu";
+            $menu->write();
+            $menu->flushCache();
+            if (method_exists('Database', 'alteration_message')) {
+                Database::alteration_message("Footer menu created", "created");
+            } else {
+                DB::alteration_message("Footer menu created", "created");
+            }
         }
 
             

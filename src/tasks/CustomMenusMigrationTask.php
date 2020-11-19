@@ -2,14 +2,15 @@
 
 namespace ilateral\SilverStripe\CustomMenus\Tasks;
 
+use SilverStripe\ORM\DB;
+use SilverStripe\Control\Director;
 use SilverStripe\Dev\MigrationTask;
+use SilverStripe\ORM\DatabaseAdmin;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\Controller;
-use SilverStripe\Control\Director;
-use SilverStripe\ORM\DatabaseAdmin;
-use SilverStripe\ORM\DB;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use SilverStripe\SiteConfig\SiteConfig;
 use ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink;
+use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
 
 class CustomMenusMigrationTask extends MigrationTask
 {
@@ -31,11 +32,13 @@ class CustomMenusMigrationTask extends MigrationTask
      */
     public function up()
     {
-        
+        $config = SiteConfig::current_site_config();
         $menus = CustomMenuHolder::get();
         $i = 0;
         
         foreach ($menus as $menu) {
+            $config->Menus()->add($menu);
+            DB::alteration_message('Re-Linked Custom Menu to SiteConfig', 'changed');
             foreach ($menu->Pages() as $page) {
                 $link = CustomMenuLink::create([
                     "BaseClass" => SiteTree::class,
@@ -49,6 +52,7 @@ class CustomMenusMigrationTask extends MigrationTask
                 $i++;
             }
         }
+        $config->write();
 
         $this->log(sprintf(
             'Migrated %s menu page links.',
