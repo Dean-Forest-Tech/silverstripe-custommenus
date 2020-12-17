@@ -89,10 +89,9 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
     function requireDefaultRecords()
     {
         parent::requireDefaultRecords();
-        $menus = CustomMenuHolder::get();
 
         // Main Menu
-        if (!DataObject::get_one($this->class)) {
+        if (!DataObject::get_one(self::class)) {
             $menu = new CustomMenuHolder();
             $menu->Title = 'Main Menu';
             $menu->Slug = "main-menu";
