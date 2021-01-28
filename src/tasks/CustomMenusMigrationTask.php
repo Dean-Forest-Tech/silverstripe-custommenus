@@ -14,17 +14,12 @@ use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
 
 class CustomMenusMigrationTask extends MigrationTask
 {
+    private static $segment = 'CustomMenusMigrationTask';
+
     protected $title = "Migration of CustomMenu assotiated pages";
     
     protected $description = "Migrate pages associated with a CustomMenu holder to the new CustomMenuHolderLink";
 
-    /**
-     * Should this task be invoked automatically via dev/build?
-     *
-     * @config
-     *
-     * @var bool
-     */
     private static $run_during_dev_build = true;
 
     /**

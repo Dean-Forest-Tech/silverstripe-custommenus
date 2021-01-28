@@ -49,3 +49,7 @@ The following is a log of changes for the Custom Menus module
 
 * Add ability to access the base holder when rendering a menu
 * Add ability to render a menu link
+
+## 2.1.5
+
+* Automatically re-attach any hanging menu holders after upgrades
