@@ -53,3 +53,7 @@ The following is a log of changes for the Custom Menus module
 ## 2.1.5
 
 * Automatically re-attach any hanging menu holders after upgrades
+
+## 2.1.6
+
+* Fix unsupported array definition of default sort

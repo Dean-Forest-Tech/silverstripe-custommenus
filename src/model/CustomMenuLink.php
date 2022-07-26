@@ -85,9 +85,7 @@ class CustomMenuLink extends DataObject
         'Menu'  => CustomMenuHolder::class
     ];
 
-    private static $default_sort = [
-        "SortOrder" => "ASC"
-    ];
+    private static $default_sort = "SortOrder ASC";
 
     private static $casting = [
         'Type' => 'Varchar',
