@@ -57,3 +57,8 @@ The following is a log of changes for the Custom Menus module
 ## 2.1.6
 
 * Fix unsupported array definition of default sort
+
+## 2.2.0
+
+* SS4 | SS5 support
+* Migrate to DFT
