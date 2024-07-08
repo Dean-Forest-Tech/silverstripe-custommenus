@@ -1,22 +1,20 @@
 # Custom Menus
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/badges/quality-score.png?b=2)](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/?branch=2)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/i-lateral/silverstripe-custommenus/badges/code-intelligence.svg?b=2)](https://scrutinizer-ci.com/code-intelligence)
-[![Build Status](https://travis-ci.org/i-lateral/silverstripe-custommenus.svg?branch=2)](https://travis-ci.org/i-lateral/silverstripe-custommenus)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Dean-Forest-Tech/silverstripe-custommenus/badges/quality-score.png?b=2)](https://scrutinizer-ci.com/g/Dean-Forest-Tech/silverstripe-custommenus/?branch=2)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Dean-Forest-Tech/silverstripe-custommenus/badges/code-intelligence.svg?b=2)](https://scrutinizer-ci.com/code-intelligence)
+[![Build Status](https://travis-ci.org/Dean-Forest-Tech/silverstripe-custommenus.svg?branch=2)](https://travis-ci.org/Dean-Forest-Tech/silverstripe-custommenus)
 
 A module to allow the creation of customised menus for your
 SilverStripe site/App via SiteConfig.
 
-This module is developed and maintained by [ilateral](http://www.ilateralweb.co.uk)
-
 ## Requirements
-SilverStripe 3.3 or greater.
+SilverStripe 4 or 5
 
 ## Installation Instructions
 
 The prefered way to install this module is via composer:
 
-    composer require i-lateral/silverstripe-custommenus
+    composer require dft/silverstripe-custommenus
 
 Alternativley you can download the module:
 
@@ -28,7 +26,7 @@ Alternativley you can download the module:
 Once the module is downloaded and installed, you can create menus
 and add pages to them by visiting:
 
-    http://www.yourwebsite.com/admin.settings
+    http://www.yourwebsite.com/admin/settings
 
 And then clicking on the "Menus" tab.
 

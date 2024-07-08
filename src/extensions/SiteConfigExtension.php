@@ -1,6 +1,6 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Extensions;
+namespace DFT\SilverStripe\CustomMenus\Extensions;
 
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\GridField\GridField;
@@ -8,13 +8,11 @@ use SilverStripe\Forms\GridField\GridFieldExportButton;
 use SilverStripe\Forms\GridField\GridFieldPrintButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 use SilverStripe\Forms\FieldList;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder;
 
 /**
  * CustomMenuHolder_SubsiteExtension is used if the Subsites module is detected,
  * adding extra features to the menu.
- *
- * @author Mo <morven@ilateral.co.uk>
  */
 class SiteConfigExtension extends DataExtension
 {

@@ -1,23 +1,19 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Model;
+namespace DFT\SilverStripe\CustomMenus\Model;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\PermissionProvider;
 use SilverStripe\Security\Permission;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\ORM\Connect\Database;
 use SilverStripe\ORM\DB;
 use SilverStripe\Core\Convert;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
-use ilateral\SilverStripe\CustomMenus\Tasks\CustomMenusMigrationTask;
+use DFT\SilverStripe\CustomMenus\Tasks\CustomMenusMigrationTask;
 
 /**
  * A container of menu links that can then be rendered into a template
- *
- * @author Mo <morven@ilateral.co.uk>
- * @package CustomMenus
  */
 class CustomMenuHolder extends DataObject implements PermissionProvider
 {

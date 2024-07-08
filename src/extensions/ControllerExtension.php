@@ -1,12 +1,12 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Extensions;
+namespace DFT\SilverStripe\CustomMenus\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Core\Convert;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuList;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuList;
 
 class ControllerExtension extends Extension
 {
@@ -16,7 +16,7 @@ class ControllerExtension extends Extension
      *
      * @param $menu template slug for retriving a menu
      *
-     * @return \ilateral\SilverStripe\CustomMenus\Model\CustomMenuList
+     * @return \DFT\SilverStripe\CustomMenus\Model\CustomMenuList
      */
     public function CustomMenu($menu = "")
     {
@@ -56,13 +56,14 @@ class ControllerExtension extends Extension
      */
     public function RenderedCustomMenu($menu = "", $show_heading = false)
     {
-        return $this
-            ->owner
+        $owner = $this->getOwner();
+
+        return $owner
             ->renderWith(
-                'ilateral\SilverStripe\CustomMenus\Includes\CustomMenu',
+                'DFT\SilverStripe\CustomMenus\Includes\CustomMenu',
                 [
                     'Slug' => $menu,
-                    'Menu' => $this->owner->CustomMenu($menu),
+                    'Menu' => $owner->CustomMenu($menu),
                     'ShowHeading' => $show_heading
                 ]
             );

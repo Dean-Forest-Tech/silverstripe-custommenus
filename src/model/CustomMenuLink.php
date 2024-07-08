@@ -1,6 +1,6 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Model;
+namespace DFT\SilverStripe\CustomMenus\Model;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
@@ -21,9 +21,6 @@ use NathanCox\HasOneAutocompleteField\Forms\HasOneAutocompleteField;
  * Properties:
  * - Title
  * - MenuTitle
- *
- * @author Mo <morven@ilateral.co.uk>
- * @package CustomMenus
  */
 class CustomMenuLink extends DataObject
 {
@@ -42,7 +39,7 @@ class CustomMenuLink extends DataObject
      *
      * This can either be a simple list of ClassNames, EG:
      *
-     * ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
+     * DFT\SilverStripe\CustomMenus\Model\CustomMenuLink:
      *   base_classes:
      *    'SilverStripe\CMS\Model\SiteTree': "Page on site"
      *
@@ -50,7 +47,7 @@ class CustomMenuLink extends DataObject
      * labels and search_fields (which allows you to customise how each class
      * is searched for). EG:
      *
-     * ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
+     * DFT\SilverStripe\CustomMenus\Model\CustomMenuLink:
      *   base_classes:
      *    'SilverStripe\CMS\Model\SiteTree': "Page on site"
      *    'App\Model\Product':

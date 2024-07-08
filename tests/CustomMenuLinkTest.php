@@ -1,12 +1,12 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Tests;
+namespace DFT\SilverStripe\CustomMenus\Tests;
 
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Core\Config\Config;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink;
-use ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemOne;
-use ilateral\SilverStripe\CustomMenus\Tests\Model\TestMenuItemTwo;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuLink;
+use DFT\SilverStripe\CustomMenus\Tests\Model\TestMenuItemOne;
+use DFT\SilverStripe\CustomMenus\Tests\Model\TestMenuItemTwo;
 
 class CustomMenuLinkTest extends SapphireTest
 {

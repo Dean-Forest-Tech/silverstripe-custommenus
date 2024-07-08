@@ -1,6 +1,6 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Tests\Model;
+namespace DFT\SilverStripe\CustomMenus\Tests\Model;
 
 use SilverStripe\Dev\TestOnly;
 use SilverStripe\ORM\DataObject;

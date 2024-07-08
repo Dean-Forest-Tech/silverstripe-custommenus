@@ -3,25 +3,26 @@ name: custommenus
 ---
 SilverStripe\Control\Controller:
   extensions:
-    - 'ilateral\SilverStripe\CustomMenus\Extensions\ControllerExtension'
+    - 'DFT\SilverStripe\CustomMenus\Extensions\ControllerExtension'
 SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - 'ilateral\SilverStripe\CustomMenus\Extensions\CustomMenuExtension'
+    - 'DFT\SilverStripe\CustomMenus\Extensions\CustomMenuExtension'
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - 'ilateral\SilverStripe\CustomMenus\Extensions\SiteConfigExtension'
+    - 'DFT\SilverStripe\CustomMenus\Extensions\SiteConfigExtension'
 
 ---
 Only:
   moduleexists: 'silverstripe/cms'
 ---
-ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink:
+DFT\SilverStripe\CustomMenus\Model\CustomMenuLink:
   base_classes:
     'SilverStripe\CMS\Model\SiteTree': "Page on site"
+
 ---
 Only:
   ModuleExists: 'silverstripe/translatable'
 ---
 SilverStripe\Core\Injector\Injector:
-  ilateral\SilverStripe\CustomMenus\Extensions\ControllerExtension:
-    class: ilateral\SilverStripe\CustomMenus\Extensions\TranslatableControllerExtension
+  DFT\SilverStripe\CustomMenus\Extensions\ControllerExtension:
+    class: DFT\SilverStripe\CustomMenus\Extensions\TranslatableControllerExtension

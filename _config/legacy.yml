@@ -3,5 +3,7 @@ Name: custommenuslegacy
 ---
 SilverStripe\ORM\DatabaseAdmin:
   classname_value_remapping:
-    CustomMenuHolder: ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder
-    CustomMenuLink: ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink
+    CustomMenuHolder: DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder
+    CustomMenuLink: DFT\SilverStripe\CustomMenus\Model\CustomMenuLink
+    ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder: DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder
+    ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink: DFT\SilverStripe\CustomMenus\Model\CustomMenuLink

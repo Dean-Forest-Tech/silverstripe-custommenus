@@ -1,8 +1,8 @@
 {
-  "name": "i-lateral/silverstripe-custommenus",
+  "name": "dft/silverstripe-custommenus",
   "description": "A Silverstripe module allowing you to create custom menus that can be gernated in the front end of your site.",
 	"type": "silverstripe-vendormodule",
-	"homepage": "http://github.com/i-lateral/silverstripe-custommenus",
+	"homepage": "http://github.com/Dean-Forest-Tech/silverstripe-custommenus",
 	"keywords": [
 		"silverstripe",
 		"nav",
@@ -12,12 +12,12 @@
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
-			"name": "Morven Lewis-Everley",
-			"email": "morven@i-lateral.com"
+		  "name": "Dean Forest Tech",
+		  "homepage": "https://dean-forest-tech.uk"
 		}
 	],
 	"support": {
-		"issues": "http://github.com/i-lateral/silverstripe-custommenus/issues"
+		"issues": "http://github.com/Dean-Forest-Tech/silverstripe-custommenus/issues"
 	},
 	"require": {
 		"silverstripe/framework": "^4.0 || ^5.0",
@@ -33,8 +33,8 @@
 	},
     "autoload": {
         "psr-4": {
-            "ilateral\\SilverStripe\\CustomMenus\\": "src/",
-            "ilateral\\SilverStripe\\CustomMenus\\Tests\\": "tests/"
+            "DFT\\SilverStripe\\CustomMenus\\": "src/",
+            "DFT\\SilverStripe\\CustomMenus\\Tests\\": "tests/"
         }
     },
     "scripts": {

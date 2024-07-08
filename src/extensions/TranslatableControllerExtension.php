@@ -1,6 +1,6 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Extensions;
+namespace DFT\SilverStripe\CustomMenus\Extensions;
 
 use SilverStripe\ORM\ArrayList;
 

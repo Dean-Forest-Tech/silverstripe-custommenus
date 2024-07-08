@@ -1,6 +1,6 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Tasks;
+namespace DFT\SilverStripe\CustomMenus\Tasks;
 
 use SilverStripe\ORM\DB;
 use SilverStripe\Control\Director;
@@ -9,15 +9,15 @@ use SilverStripe\ORM\DatabaseAdmin;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\Controller;
 use SilverStripe\SiteConfig\SiteConfig;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuLink;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuLink;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder;
 
 class CustomMenusMigrationTask extends MigrationTask
 {
     private static $segment = 'CustomMenusMigrationTask';
 
     protected $title = "Migration of CustomMenu assotiated pages";
-    
+
     protected $description = "Migrate pages associated with a CustomMenu holder to the new CustomMenuHolderLink";
 
     private static $run_during_dev_build = true;

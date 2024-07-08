@@ -1,9 +1,9 @@
 <?php
 
-namespace ilateral\SilverStripe\CustomMenus\Extensions;
+namespace DFT\SilverStripe\CustomMenus\Extensions;
 
 use SilverStripe\ORM\DataExtension;
-use ilateral\SilverStripe\CustomMenus\Model\CustomMenuHolder;
+use DFT\SilverStripe\CustomMenus\Model\CustomMenuHolder;
 
 class CustomMenuExtension extends DataExtension
 {
